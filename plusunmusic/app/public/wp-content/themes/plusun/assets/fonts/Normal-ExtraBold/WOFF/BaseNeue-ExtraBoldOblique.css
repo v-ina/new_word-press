@@ -1,0 +1,12 @@
+/* Webfont: BaseNeue-ExtraBoldOblique */@font-face {
+    font-family: 'BaseNeueExtBdObl';
+    src: url('BaseNeue-ExtraBoldOblique.eot'); /* IE9 Compat Modes */
+    src: url('BaseNeue-ExtraBoldOblique.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('BaseNeue-ExtraBoldOblique.woff') format('woff'), /* Modern Browsers */
+         url('BaseNeue-ExtraBoldOblique.woff2') format('woff2'), /* Modern Browsers */
+         url('BaseNeue-ExtraBoldOblique.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

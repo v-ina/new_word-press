@@ -1,0 +1,9 @@
+/* Webfont: BaseNeue-SemiBoldOblique */@font-face {
+    font-family: 'BaseNeueSemBdObl';
+    src: url('BaseNeue-SemiBoldOblique.woff2') format('woff2'), /* Modern Browsers */
+         url('BaseNeue-SemiBoldOblique.otf') format('opentype'); /* Safari, Android, iOS */
+             font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

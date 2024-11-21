@@ -1,0 +1,9 @@
+/* Webfont: BaseNeue-ExtraBoldOblique */@font-face {
+    font-family: 'BaseNeueExtBdObl';
+    src: url('BaseNeue-ExtraBoldOblique.woff2') format('woff2'), /* Modern Browsers */
+         url('BaseNeue-ExtraBoldOblique.otf') format('opentype'); /* Safari, Android, iOS */
+             font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

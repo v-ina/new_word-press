@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "BaseNeue";
+  src: url("./fonts/BaseNeue-ExtraBold.woff2") format("woff2"),
+    url("./fonts/BaseNeue-ExtraBold.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BaseNeue";
+  src: url("./fonts/BaseNeue-ExtraBoldOblique.woff2") format("woff2"),
+    url("./fonts/BaseNeue-ExtraBoldOblique.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "BaseNeue";
+  src: url("./fonts/BaseNeue-SemiBold.woff2") format("woff2"),
+    url("./fonts/BaseNeue-SemiBold.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BaseNeue";
+  src: url("./fonts/BaseNeue-SemiBoldOblique.woff2") format("woff2"),
+    url("./fonts/BaseNeue-SemiBoldOblique.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+}
