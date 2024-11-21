@@ -26,7 +26,7 @@ $partners = $args['partners'];
 
       <div class="partners">
         <?php for ($i = 0; $i < 3; $i++) : ?>
-          <div class="partners__line flex gap-24 items-center my-14">
+          <div class="partners__line <?php echo $i === 1 ? 'second-parallel' : ($i === 0 ? 'first-parallel' : 'third-parallel'); ?> flex gap-24 items-center my-14">
             <?php foreach ($partners as $partner): ?>
               <img
                 src="<?php echo esc_url($partner['logo']['sizes']['large']); ?>"
@@ -48,7 +48,6 @@ $partners = $args['partners'];
     will-change: transform;
     white-space: nowrap;
     gap: 96px !important;
-    /* Maintains consistent gap during animation */
   }
 
   .partners__line img {
@@ -58,74 +57,81 @@ $partners = $args['partners'];
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const lines = document.querySelectorAll('.partners__line');
+document.addEventListener('DOMContentLoaded', function () {
+  const pTag1 = document.querySelector('.first-parallel');
+  const pTag2 = document.querySelector('.second-parallel');
+  const pTag3 = document.querySelector('.third-parallel');
 
-    function calculateRequiredCopies(line) {
-      const viewportWidth = window.innerWidth;
-      const lineWidth = Array.from(line.querySelectorAll('img')).reduce((width, img) => {
-        return width + img.offsetWidth + 96; // 96px is the gap
-      }, 0);
+  const partners1 = Array.from(pTag1.querySelectorAll('img'));
+  const partners2 = Array.from(pTag2.querySelectorAll('img'));
+  const partners3 = Array.from(pTag3.querySelectorAll('img'));
 
-      return Math.ceil(viewportWidth * 3 / lineWidth); // Multiply by 3 to ensure coverage
+  let count1 = 0;
+  let count2 = 0;
+  let count3 = 0;
+
+  // 인덱스를 갱신하여 이미지가 무한히 반복되도록 하는 함수
+  function marqueeText(count, element, partners, direction, speed) {
+    const elementWidth = element.scrollWidth;
+
+    // 이미지가 이동한 만큼 카운트를 증가시킨다.
+    count += speed;
+
+    // 카운트가 배열의 길이를 초과하면 첫 번째 이미지로 돌아감
+    if (count > partners.length * 2.13 ) {  // 두 배로 늘린 길이만큼 카운트
+      count = 0;  // 카운트를 0으로 리셋하여 처음으로
     }
 
-    // Clone logos enough times to cover viewport
-    lines.forEach(line => {
-      const originalContent = line.innerHTML;
-      const requiredCopies = calculateRequiredCopies(line);
-      let newContent = '';
+    // 현재 이미지 인덱스에 맞춰서 transform을 설정
+    const logoWidth = partners[0].offsetWidth + 96;  // 각 로고의 width + gap
+    element.style.transform = `translateX(${direction * count * logoWidth}px)`;
 
-      for (let i = 0; i < requiredCopies; i++) {
-        newContent += originalContent;
-      }
+    return count;
+  }
 
-      line.innerHTML = newContent;
-      line.style.display = 'flex';
-      line.style.whiteSpace = 'nowrap';
-    });
+  // 애니메이션 재귀 함수
+  function animate() {
+    // 속도 조절: count를 더 천천히 증가시킴
+    const speed = 0.01; // 속도 낮추기 (기존 1에서 0.2로 변경)
 
-    // Animation settings
-    const speeds = {
-      line1: 0.5,
-      line2: -0.7,
-      line3: 1.0
-    };
+    count1 = marqueeText(count1, pTag1, partners1, -1, speed); // 첫 번째 라인, 오른쪽에서 왼쪽
+    count2 = marqueeText(count2, pTag2, partners2, 1, speed);  // 두 번째 라인, 왼쪽에서 오른쪽
+    count3 = marqueeText(count3, pTag3, partners3, -1, speed); // 세 번째 라인, 오른쪽에서 왼쪽
 
-    let positions = {
-      line1: 0,
-      line2: 0,
-      line3: 0
-    };
+    window.requestAnimationFrame(animate); // 애니메이션 재귀 호출
+  }
 
-    function animate() {
-      lines.forEach((line, index) => {
-        const lineWidth = Array.from(line.querySelectorAll('img')).reduce((width, img) => {
-          return width + img.offsetWidth + 96; // 96px is the gap
-        }, 0) / 3; // Divide by 3 since we tripled the content
+  // 각 라인에 대해 로고 확장
+  function extendLineWithLogos(line, direction) {
+    const logos = Array.from(line.querySelectorAll('img'));
+    const logoWidth = logos[0].offsetWidth + 96; // 단일 로고의 폭 + gap
+    const requiredCopies = Math.ceil(window.innerWidth / logoWidth) * 2; // 화면 너비를 초과하도록 2배로 추가 복제
 
-        const speedKey = `line${index + 1}`;
-        positions[speedKey] += speeds[speedKey];
+    let originalContent = line.innerHTML;
+    let newContent = originalContent;
 
-        if (Math.abs(positions[speedKey]) >= lineWidth) {
-          positions[speedKey] = 0;
-        }
-
-        line.style.transform = `translateX(${positions[speedKey]}px)`;
-      });
-
-      requestAnimationFrame(animate);
+    // 복제하여 라인을 길게 만든다.
+    for (let i = 0; i < requiredCopies; i++) {
+      newContent += originalContent;
     }
 
-    // Ensure images are loaded before starting animation
-    Promise.all(Array.from(document.querySelectorAll('.partners__line img'))
-        .map(img => {
-          if (img.complete) return Promise.resolve();
-          return new Promise(resolve => img.addEventListener('load', resolve));
-        }))
-      .then(() => {
-        // Start animation only after all images are loaded
-        animate();
-      });
-  });
+    line.innerHTML = newContent;
+    line.style.display = 'flex';
+    line.style.whiteSpace = 'nowrap';
+    
+    // 각 라인의 초기 위치 설정
+    if (direction === 'right') {
+      line.style.transform = `translateX(-${logoWidth * 2}px)`; // 오른쪽으로 늘리기
+    } else if (direction === 'left') {
+      line.style.transform = `translateX(${logoWidth * 2}px)`; // 왼쪽으로 늘리기
+    }
+  }
+
+  // 첫 번째, 두 번째, 세 번째 라인에 대해 로고 확장
+  extendLineWithLogos(pTag1, 'right'); // 첫 번째 줄, 오른쪽으로
+  extendLineWithLogos(pTag2, 'left');  // 두 번째 줄, 왼쪽으로
+  extendLineWithLogos(pTag3, 'right'); // 세 번째 줄, 오른쪽으로
+
+  animate(); // 애니메이션 시작
+});
 </script>
