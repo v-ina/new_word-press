@@ -2504,3 +2504,15 @@ Stack trace:
 [21-Nov-2024 21:56:19 UTC] PHP Warning:  foreach() argument must be of type array|object, false given in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 102
 [21-Nov-2024 21:56:29 UTC] PHP Warning:  Undefined array key "title" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 128
 [21-Nov-2024 21:56:29 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 129
+[22-Nov-2024 23:03:37 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 114
+[22-Nov-2024 23:03:37 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 114
+[22-Nov-2024 23:03:37 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 114
+[22-Nov-2024 23:03:37 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 114
+[22-Nov-2024 23:03:37 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 114
+[22-Nov-2024 23:03:37 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 114
+[22-Nov-2024 23:08:10 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 114
+[22-Nov-2024 23:08:10 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 114
+[22-Nov-2024 23:08:10 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 114
+[22-Nov-2024 23:08:10 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 114
+[22-Nov-2024 23:08:10 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 114
+[22-Nov-2024 23:08:10 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 114
