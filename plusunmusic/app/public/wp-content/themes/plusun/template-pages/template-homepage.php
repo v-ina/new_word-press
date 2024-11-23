@@ -45,22 +45,9 @@ get_header();
     .fp-tooltip {
       display: none !important;
     }
-    /* 스타일을 커스터마이징 */
-    .service-cards-container {
-      height: 100%;
-      overflow-y: auto; /* 독립적인 스크롤을 허용 */
-      padding: 20px;
-    }
-
-    .service-card {
-      background: #f9f9f9;
-      padding: 20px;
-      margin: 10px 0;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-    }
-    .service-card:last-child {
-      background: #ffe0b2;
+    /* Use similar style to .service-title for dot hover/focus */
+    .fp-nav a.active, .fp-nav a:hover {
+      border: 2px solid #f0b34d; /* 호버/활성화된 점의 테두리 색 */
     }
   </style>
 </head>
@@ -102,24 +89,16 @@ get_header();
 
     <!-- Section 3 : Service details section -->
     <section class="section">
-      <div class="service-cards-container">
-        <?php
-        if (have_rows('section-service-details')):
-          while (have_rows('section-service-details')): the_row();
+      <?php
+      if (have_rows('section-service-details')):
+        while (have_rows('section-service-details')): the_row();
 
-            $services = get_sub_field('service');
-            foreach ($services as $index => $service):
-              ?>
-              <div class="service-card" data-index="<?php echo $index + 1; ?>">
-                <?php echo $service['description']; ?>
-              </div>
-              <?php
-            endforeach;
+          $services = get_sub_field('service');
+          get_template_part('template-parts/services', 'wheel', array('services' => $services));
 
-          endwhile;
-        endif;
-        ?>
-      </div>
+        endwhile;
+      endif;
+      ?>
     </section>
 
     <!-- Section 4 : Player -->
@@ -164,31 +143,22 @@ get_header();
 
   </div> <!-- End of fullPage wrapper -->
 
-  <!-- Initialize fullPage.js -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // FullPage.js 초기화
-      new fullpage('#fullpage', {
-        autoScrolling: true, // 자동 스크롤 활성화
-        scrollHorizontally: false, // 수평 스크롤 비활성화
-        navigation: true, // 내비게이션 버튼 활성화
-        navigationPosition: 'right', // 내비게이션 위치
-        scrollOverflow: true, // 스크롤이 넘칠 경우 자동으로 스크롤 가능
-        normalScrollElements: '.service-cards-container', // 특정 요소에서 FullPage.js 스크롤 비활성화
-      });
-
-      // IntersectionObserver로 마지막 카드 감지
-      const cardsContainer = document.querySelector('.service-cards-container');
-      const lastCard = cardsContainer.querySelector('.service-card:last-child');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            fullpage_api.moveSectionDown(); // 다음 섹션으로 이동
-          }
-        });
-      }, { root: cardsContainer, threshold: 1.0 });
-
-      observer.observe(lastCard); // 마지막 카드에 감시 추가
-    });
-  </script>
+  <!-- Activate stop scroll -->
+  <?php get_template_part('template-parts/utils', 'stopscroll'); ?>
 </main>
+<!-- Initialize fullPage.js -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new fullpage('#fullpage', {
+      autoScrolling: true, // 자동 스크롤 활성화
+      scrollHorizontally: false, // 수평 스크롤 비활성화
+      navigation: true, // 내비게이션 버튼 활성화
+      navigationPosition: 'right', // 내비게이션 위치
+      navigationTooltips: [' ', ' ', ' ', ' ', ' ', ' '], // 각 섹션에 대한 툴팁 제거 (빈 문자열로)
+      showActiveTooltip: false, // 활성화된 툴팁 표시 비활성화
+      slidesNavigation: true, // 슬라이드 내비게이션
+      scrollOverflow: true, // 스크롤이 넘칠 경우 자동으로 스크롤 가능
+      lazyLoading: true, // 지연 로딩 활성화
+    });
+  });
+</script>

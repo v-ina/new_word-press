@@ -113,6 +113,7 @@ ul#primary-menu {
   list-style: none;
   transition: all 0.25s ease-in-out;
 }
+
 ul#primary-menu li {
   padding: 8px 6em 2px 6em;
   margin: 0 0 6px 0;
@@ -133,13 +134,14 @@ ul#primary-menu li::after {
   background-image: url("./img/ruler-hover.svg");
   background-repeat: repeat-y;
   background-size: contain;
-  opacity: 0;
-  transition: opacity 0.25s ease-in-out;
+  transform: scaleX(0); 
+  transform-origin: left; 
+  transition: transform 0.25s ease-in-out; 
   pointer-events: none;
 }
 
 ul#primary-menu li:hover::after {
-  opacity: 1;
+  transform: scaleX(1); 
 }
 
 ul#primary-menu li a {
@@ -149,10 +151,12 @@ ul#primary-menu li a {
   font-family: var(--font-title);
   transition: all 0.25s ease-in-out;
 }
+
 ul#primary-menu li a:hover {
   padding-left: 0.85em;
   color: #f75711;
 }
+
 
 .section-full {
   min-height: 100vh;
