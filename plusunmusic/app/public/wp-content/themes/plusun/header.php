@@ -36,9 +36,9 @@
 		<header id="masthead" class="site-header fixed top-0 h-[66px] w-full <?php if (get_field('header_type') == 'noir'): ?> site-header--dark <?php endif; ?>">
 			<div class="max-w-[1600px] mx-auto grid grid-cols-3 items-center p-4">
 				<!-- menu -->
-				<div class="">
+				<div class="menu-parent-trigger">
 					<button class="menu-trigger">
-						<svg width="35" height="24" viewBox="0 0 35 24" xmlns="http://www.w3.org/2000/svg">
+						<svg class="menu-icon" width="35" height="30" viewBox="0 0 35 30" xmlns="http://www.w3.org/2000/svg">
 							<path d="M2 1.99976L33 1.99976" stroke="#fffbe5" stroke-width="3" stroke-linecap="round" />
 							<path d="M2 11.9998L33 11.9998" stroke="#fffbe5" stroke-width="3" stroke-linecap="round" />
 							<path d="M33 21.9998L2 22.0002" stroke="#fffbe5" stroke-width="3" stroke-linecap="round" />

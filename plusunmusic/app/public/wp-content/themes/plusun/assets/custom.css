@@ -103,9 +103,57 @@ a:visited {
 .site-header.site-header--open a {
   color: #f75711;
 }
+.menu-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 50px;
+  height: 34px;
+  padding-top: 4px; 
+}
+.menu-icon path {
+  transform-origin: center; 
+}
+.site-header.site-header--open .menu-icon {
+  animation: rotateIconOpen 0.25s ease-in-out forwards; 
+}
+.site-header.site-header--open .menu-icon path:last-child {
+  animation: rotatePathOpen 0.25s ease-in-out 0.25s forwards; 
+}
+.site-header:not(.site-header--open) .menu-icon path:last-child {
+  animation: rotatePathClose 0.25s ease-in-out forwards; 
+}
+.site-header:not(.site-header--open) .menu-icon {
+  animation: rotateIconClose 0.25s ease-in-out 0.25s forwards; 
+}
+@keyframes rotateIconOpen {
+  0% {
+    transform: rotate(0deg) ;
+  }
+  100% {
+    transform: rotate(-90deg);
+  }
+}
+@keyframes rotatePathOpen {
+  0% {
+    transform: rotate(0deg) translateY(0px) translateX(0px);
+  }
+  100% {
+    transform: rotate(-10deg) translateY(2px) translateX(-2px) ;
+  }
+}
+@keyframes rotatePathClose {
+  0% {
+    transform: rotate(-10deg) translateY(2px) translateX(-2px);
+  }
+  100% {
+    transform: rotate(0deg) translateY(0px) translateX(0px) ;
+  }
+}
 
 /* Primary menu */
-
 ul#primary-menu {
   display: flex;
   flex-direction: column;
