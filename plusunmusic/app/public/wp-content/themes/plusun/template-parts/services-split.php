@@ -133,8 +133,10 @@ $encart_2 = $args['inserts'][1];
     color: var(--color-beige);
     font-size: 1.125rem;
     text-align: center;
+    margin: 0 auto;
     margin-top: 1.5rem;
     margin-bottom: 2rem;
+    width: 60%;
   }
 
   /* Hover effects */
