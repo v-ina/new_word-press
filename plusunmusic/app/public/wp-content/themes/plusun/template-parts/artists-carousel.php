@@ -63,8 +63,8 @@ $artists = $args['artists'];
     width: auto;
     height: 100%;
     transform-origin: center center;
-    transform: scale(1.1);
-    transition: transform 0.3s ease-in-out, z-index 0.3s ease-in-out, filter 0.3s ease-in-out;
+    transform: scale(1);
+    transition: transform 0.2s ease-in z-index 0.2s ease-in-out, filter 0.5s ease-in-out; /* 기본 트랜지션 */
     filter: grayscale(100%) brightness(50%);
     display: flex;
     align-items:center;
@@ -84,35 +84,60 @@ $artists = $args['artists'];
 }
 
 .swiper-slide.swiper-slide-next, .swiper-slide.swiper-slide-prev{
-  transform: scale(1.3);
+  transform: scale(3);
   z-index: 3;
 }
 
+.swiper-slide.swiper-slide-next{
+  /* padding-left : 80px; */
+  /* transform: translateX(30px); */
+  transform : scale(1.6) translateX(100px) !important;
+
+
+}
+
+.swiper-slide.swiper-slide-prev{
+  /* padding-right : 80px; */
+  /* transform: translateX(-30px);
+   */
+  transform : scale(1.6) translateX(-100px) !important;
+}
 .swiper-slide.swiper-slide-next + .swiper-slide {
     z-index: 2;
+    transform: translateX(150px);
+
 }
 
-.swiper-slide.swiper-slide-prev + .swiper-slide {
+.swiper-slide.before-prev {
     z-index: 2;
+    /* margin-left: -30px; */
+    transform: translateX(-150px);
+
 }
+
+
 
 .swiper-slide.swiper-slide-active {
-    transform: scale(1.8);
+    transform: scale(3);
     z-index: 10 !important ;
     padding: 0px 30px;
+
     filter: grayscale(0%) brightness(100%);
 }
+
+
 </style>
 
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    var swiper = new Swiper('.artists-slider', {
+    const swiper = new Swiper('.artists-slider', {
         loop: true,
-        slidesPerView: 5, // 중앙 슬라이드 정확히 위치
-        spaceBetween:0,
+        slidesPerView: 5,
+        spaceBetween: 120,
         centeredSlides: true,
         slideToClickedSlide: true,
+        allowTouchMove: false, 
         breakpoints: {
             0: {
                 slidesPerView: 1,
@@ -124,7 +149,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 slidesPerView: 5,
             }
         },
-        
+        on: {
+            slideChangeTransitionEnd: function () {
+                // 모든 슬라이드 초기화
+                document.querySelectorAll('.swiper-slide').forEach(slide => {
+                    slide.classList.remove('before-prev');
+                });
+
+                // prev 찾기
+                const prevSlide = document.querySelector('.swiper-slide-prev');
+                if (prevSlide) {
+                    // prev 바로 앞 슬라이드에 클래스 추가
+                    const beforePrev = prevSlide.previousElementSibling || document.querySelector('.swiper-wrapper').lastElementChild;
+                    beforePrev.classList.add('before-prev');
+                }
+            },
+        },
     });
 });
 
