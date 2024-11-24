@@ -138,6 +138,16 @@ function plusun_widgets_init()
 }
 add_action('widgets_init', 'plusun_widgets_init');
 
+function enqueue_swiper_assets() {
+    // Swiper CSS
+    wp_enqueue_style( 'swiper-style', 'https://unpkg.com/swiper@8/swiper-bundle.min.css' );
+    
+    // Swiper JS
+    wp_enqueue_script( 'swiper-script', 'https://unpkg.com/swiper@8/swiper-bundle.min.js', array(), null, true );
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_swiper_assets' );
+
+
 /**
  * Enqueue scripts and styles.
  */

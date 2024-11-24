@@ -18,146 +18,115 @@ $artists = $args['artists'];
     Nos artistes
   </h3>
 
-  <div class="carousel-wrapper">
-    <div class="carousel-track">
+  <div class="swiper artists-slider">
+    <div class="swiper-wrapper">
       <?php foreach ($artists as $artist):
         if (!empty($artist['cover'])):
       ?>
+        <div class="swiper-slide">
           <div class="carousel-slide">
             <img
               src="<?php echo esc_url($artist['cover']['sizes']['large']); ?>"
               alt="<?php echo esc_attr($artist['cover']['alt']); ?>"
               class="carousel-image">
           </div>
+        </div>
       <?php
         endif;
       endforeach;
       ?>
     </div>
 
-    <!-- Navigation -->
-    <div class="slider-navigation mt-8">
-      <div class="flex items-center justify-center gap-12 relative">
-        <button class="carousel-prev text-4xl text-beige opacity-50">&lt;</button>
-        <button class="carousel-next text-4xl text-beige opacity-50">&gt;</button>
-      </div>
-    </div>
   </div>
 </section>
 
 <style>
-  .artists-carousel {
+.artists-carousel {
     width: 100%;
-    height: 70vh;
     background: #1a1a1a;
     padding: 4rem 0;
-  }
+    overflow-x: hidden;
+}
 
-  .carousel-wrapper {
-    height: 100%;
-    max-width: 100%;
-    margin: 0 auto;
+.artists-slider {
+    height: 80vh;
+    margin-top: -80px;
+}
+
+.swiper {
+    width: 100%;
     position: relative;
     overflow: hidden;
-  }
+}
 
-  .carousel-track {
+.swiper-slide {
+    width: auto;
+    height: 100%;
+    transform-origin: center center;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out, z-index 0.3s ease-in-out, filter 0.3s ease-in-out;
+    filter: grayscale(100%) brightness(50%);
     display: flex;
-    align-items: flex-start;
-    height: 67%;
-    transition: transform 0.5s ease;
-    padding: 0 15%;
-  }
+    align-items:center;
+    z-index: 1;
+}
 
-  .carousel-slide {
-    min-width: 35%;
-    padding: 0 2rem;
-    transition: opacity 0.3s ease;
-    opacity: 0.3;
-  }
-
-  .carousel-slide.active {
-    opacity: 1;
-  }
-
-  .carousel-image {
+.carousel-image {
     width: 100%;
-    height: auto;
-    max-height: 100%;
-    object-fit: contain;
-    display: block;
-  }
+    height: 100%;
+    object-fit: cover; 
+}
 
-  .carousel-prev,
-  .carousel-next {
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+.swiper-wrapper {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.swiper-slide.swiper-slide-next, .swiper-slide.swiper-slide-prev{
+  transform: scale(1.3);
+  z-index: 3;
+}
+
+.swiper-slide.swiper-slide-next + .swiper-slide {
     z-index: 2;
-  }
+}
 
-  .carousel-prev {
-    left: 5%;
-  }
+.swiper-slide.swiper-slide-prev + .swiper-slide {
+    z-index: 2;
+}
 
-  .carousel-next {
-    right: 5%;
-  }
-
-  .carousel-prev:hover,
-  .carousel-next:hover {
-    opacity: 1;
-  }
+.swiper-slide.swiper-slide-active {
+    transform: scale(1.8);
+    z-index: 10 !important ;
+    padding: 0px 30px;
+    filter: grayscale(0%) brightness(100%);
+}
 </style>
 
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const track = document.querySelector('.carousel-track');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const prevButton = document.querySelector('.carousel-prev');
-    const nextButton = document.querySelector('.carousel-next');
-    let currentIndex = 0;
-
-    function updateSlider() {
-      // Update transform
-      const slideWidth = slides[0].offsetWidth;
-      const offset = slideWidth * currentIndex;
-      track.style.transform = `translateX(-${offset}px)`;
-
-      // Update active states
-      slides.forEach((slide, index) => {
-        if (index === currentIndex) {
-          slide.classList.add('active');
-        } else {
-          slide.classList.remove('active');
-        }
-      });
-    }
-
-    prevButton.addEventListener('click', function() {
-      if (currentIndex > 0) {
-        currentIndex--;
-      } else {
-        currentIndex = slides.length - 1;
-      }
-      updateSlider();
+document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.artists-slider', {
+        loop: true,
+        slidesPerView: 5, // 중앙 슬라이드 정확히 위치
+        spaceBetween:0,
+        centeredSlides: true,
+        slideToClickedSlide: true,
+        breakpoints: {
+            0: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 3,
+            },
+            1024: {
+                slidesPerView: 5,
+            }
+        },
+        
     });
+});
 
-    nextButton.addEventListener('click', function() {
-      if (currentIndex < slides.length - 1) {
-        currentIndex++;
-      } else {
-        currentIndex = 0;
-      }
-      updateSlider();
-    });
 
-    // Initial update
-    updateSlider();
-
-    // Update on window resize
-    window.addEventListener('resize', updateSlider);
-  });
 </script>

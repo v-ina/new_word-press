@@ -11,23 +11,24 @@ get_header(); ?>
 
     <!-- Section 1 : Intro -->
     <section class="business-content section-full navigable bg-gradient-black">
-      <div class="max-w-[950px] mx-auto text-center">
-        <h2 class="text-center">
-          <?php
-          get_template_part('template-parts/title', 'bars', array(
-            'title' => get_the_title(),
-            'color' => 'beige'
-          ));
-          ?>
-        </h2>
-        <div class="content-beige">
-          <?php the_content(); ?>
-        </div>
-        <div class="mt-12">
-          <a href="/contact" class="btn btn-white">+ En savoir plus +</a>
-        </div>
-      </div>
-    </section>
+  <div class="max-w-[950px] mx-auto text-center fade-in">
+    <h2 class="text-center">
+      <?php
+      get_template_part('template-parts/title', 'bars', array(
+        'title' => get_the_title(),
+        'color' => 'beige'
+      ));
+      ?>
+    </h2>
+    <div class="content-beige">
+      <?php the_content(); ?>
+    </div>
+    <div class="mt-12">
+      <a href="/contact" class="btn btn-white">+ En savoir plus +</a>
+    </div>
+  </div>
+</section>
+
 
     <!-- Section 2 : Service details section -->
     <?php
@@ -102,6 +103,27 @@ get_header(); ?>
     user-select: none;
     -webkit-user-drag: none;
   }
+
+  /* Fade-in 애니메이션 정의 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px); /* 살짝 아래에서 올라오는 효과 */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* fade-in 클래스 초기 상태 */
+.fade-in {
+  opacity: 0;
+  /* transform: translateY(20px); */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  animation: fadeIn 1.5s ease-out forwards; /* 1초 동안 애니메이션 */
+}
+
 </style>
 
 

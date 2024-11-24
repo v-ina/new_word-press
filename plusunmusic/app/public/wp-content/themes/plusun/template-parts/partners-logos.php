@@ -54,6 +54,15 @@ $partners = $args['partners'];
     user-select: none;
     -webkit-user-drag: none;
   }
+
+  .header-darked {
+  overflow-x: hidden; /* 수평 스크롤바 제거 */
+}
+
+.partners {
+  overflow: hidden; /* 기존 코드 유지 */
+  position: relative; /* 애니메이션을 위한 기준점 */
+}
 </style>
 
 <script>
