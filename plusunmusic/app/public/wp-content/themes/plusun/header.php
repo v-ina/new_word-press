@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The header for our theme
  *
@@ -9,8 +8,8 @@
  *
  * @package PlusUn_Music
  */
-
 ?>
+
 <!doctype html>
 <html <?php language_attributes(); ?>>
 
@@ -19,7 +18,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
-	<!-- Move to function -->
+	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -35,17 +34,16 @@
 
 		<header id="masthead" class="site-header fixed top-0 h-[66px] w-full <?php if (get_field('header_type') == 'noir'): ?> site-header--dark <?php endif; ?>">
 			<div class="max-w-[1600px] mx-auto grid grid-cols-3 items-center p-4">
-				<!-- menu -->
+				<!-- Menu Button -->
 				<div class="menu-parent-trigger">
 					<button class="menu-trigger">
-						<svg class="menu-icon" width="35" height="30" viewBox="0 0 35 30" xmlns="http://www.w3.org/2000/svg">
-							<path d="M2 1.99976L33 1.99976" stroke="#fffbe5" stroke-width="3" stroke-linecap="round" />
-							<path d="M2 11.9998L33 11.9998" stroke="#fffbe5" stroke-width="3" stroke-linecap="round" />
-							<path d="M33 21.9998L2 22.0002" stroke="#fffbe5" stroke-width="3" stroke-linecap="round" />
-						</svg>
+							<span class="menu-line"></span>
+							<span class="menu-line"></span>
+							<span class="menu-line"></span>
 					</button>
 				</div>
-				<!-- logo -->
+
+				<!-- Logo -->
 				<div class="flex justify-center">
 					<a href="/">
 						<svg width="50" height="34" viewBox="0 0 50 34" xmlns="http://www.w3.org/2000/svg">
@@ -62,12 +60,12 @@
 						</svg>
 					</a>
 				</div>
+				<!-- Contact Link -->
 				<div class="flex justify-end">
 					<a href="/contact" class="font-title text-medium text-[20px] uppercase">Contact</a>
 				</div>
 			</div>
-		</header><!-- #masthead -->
-
+		</header>
 		<nav id="site-navigation" class="main-navigation hidden">
 			<div class="">
 				<?php
@@ -79,57 +77,99 @@
 				);
 				?>
 			</div>
-		</nav><!-- #site-navigation -->
+		</nav>
 
-		<!-- Naviation script -->
-		<script>
-			document.querySelector('.menu-trigger').addEventListener('click', function() {
-				document.querySelector('.main-navigation').classList.toggle('hidden');
-				document.querySelector('.site-header').classList.toggle('site-header--open');
-			});
+<style>
+	.menu-parent-trigger {
+			grid-column: 1; 
+	}
+	.menu-trigger {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 35px;
+		height: 24px;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		margin: 20px;
+	}
 
-			// Header background control
-			document.addEventListener('DOMContentLoaded', function() {
-				const header = document.querySelector('.site-header');
-				const defaultIsDark = header.classList.contains('site-header--dark');
+	.menu-line {
+		width: 100%;
+		height: 3px;
+		background-color: #fffbe5;
+		border-radius: 2px;
+		transition: transform 0.3s ease, opacity 0.3s ease;
+	}
+	.menu-trigger.oepn {
+		background-color: #F75711;
+	}
+	.menu-trigger.open .menu-line:nth-child(1) {
+		transform: rotate(90deg) translate(5px , 10px);
+		background-color: #F75711;
+	}
+	.menu-trigger.open .menu-line:nth-child(2) {
+		transform: rotate(90deg) translate(-5px, 0px);
+		background-color: #F75711;
+	}
+	.menu-trigger.open .menu-line:nth-child(3) {
+		transform: rotate(80deg) translate(-13px, -15px);
+		background-color: #F75711;
+	}
+</style>
 
-				const observer = new IntersectionObserver((entries) => {
-					entries.forEach(entry => {
-						if (entry.isIntersecting) {
-							const section = entry.target;
-							const viewportHeight = window.innerHeight;
-							const sectionRect = section.getBoundingClientRect();
-							const sectionCenter = sectionRect.top + (sectionRect.height / 2);
-							const viewportCenter = viewportHeight / 2;
+	<!-- Navigation script -->
+	<script>
+		document.querySelector('.menu-trigger').addEventListener('click', function() {
+			this.classList.toggle('open');
+			document.querySelector('.main-navigation').classList.toggle('hidden');
+			document.querySelector('.site-header').classList.toggle('site-header--open');
+			document.querySelector('.overlay').classList.toggle('show');
+		});
 
-							// Si le centre de la section est proche du centre du viewport
-							if (Math.abs(sectionCenter - viewportCenter) < 100) { // 100px de tolérance
-								console.log('Section at center:', section.id); // Debug
+		// Header background control
+		document.addEventListener('DOMContentLoaded', function() {
+			const header = document.querySelector('.site-header');
+			const defaultIsDark = header.classList.contains('site-header--dark');
 
-								if (section.classList.contains('header-darked')) {
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const section = entry.target;
+						const viewportHeight = window.innerHeight;
+						const sectionRect = section.getBoundingClientRect();
+						const sectionCenter = sectionRect.top + (sectionRect.height / 2);
+						const viewportCenter = viewportHeight / 2;
+
+						// Adjust header based on section visibility
+						if (Math.abs(sectionCenter - viewportCenter) < 100) {
+							if (section.classList.contains('header-darked')) {
+								header.classList.add('site-header--dark');
+							} else if (section.classList.contains('header-lighted')) {
+								header.classList.remove('site-header--dark');
+							} else {
+								if (defaultIsDark) {
 									header.classList.add('site-header--dark');
-								} else if (section.classList.contains('header-lighted')) {
-									header.classList.remove('site-header--dark');
 								} else {
-									// Retour à l'état par défaut
-									if (defaultIsDark) {
-										header.classList.add('site-header--dark');
-									} else {
-										header.classList.remove('site-header--dark');
-									}
+									header.classList.remove('site-header--dark');
 								}
 							}
 						}
-					});
-				}, {
-					threshold: [0, 0.25, 0.5, 0.75, 1], // Points de détection multiples pour un suivi plus fluide
-					rootMargin: '0px'
+					}
 				});
-
-				// Observer toutes les sections navigables
-				document.querySelectorAll('section.navigable').forEach(section => {
-					observer.observe(section);
-					console.log('Observing section:', section.id); // Debug
-				});
+			}, {
+				threshold: [0, 0.25, 0.5, 0.75, 1],
+				rootMargin: '0px'
 			});
-		</script>
+
+			document.querySelectorAll('section.navigable').forEach(section => {
+				observer.observe(section);
+			});
+		});
+	</script>
+</div>
+
+</body>
+</html>

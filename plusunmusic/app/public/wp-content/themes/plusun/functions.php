@@ -145,6 +145,12 @@ function enqueue_swiper_assets() {
 add_action( 'wp_enqueue_scripts', 'enqueue_swiper_assets' );
 
 
+function enqueue_custom_scripts() {
+  wp_enqueue_script('fade-in-timeline', get_template_directory_uri() . '/js/fade-in-timeline.js', array(), null, true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
+
 /**
  * Enqueue scripts and styles.
  */

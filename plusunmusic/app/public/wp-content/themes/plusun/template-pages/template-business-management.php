@@ -104,11 +104,10 @@ get_header(); ?>
     -webkit-user-drag: none;
   }
 
-  /* Fade-in 애니메이션 정의 */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-20px); /* 살짝 아래에서 올라오는 효과 */
+    transform: translateY(-40px); 
   }
   to {
     opacity: 1;
@@ -116,15 +115,13 @@ get_header(); ?>
   }
 }
 
-/* fade-in 클래스 초기 상태 */
 .fade-in {
   opacity: 0;
-  /* transform: translateY(20px); */
   transition: opacity 0.5s ease, transform 0.5s ease;
-  animation: fadeIn 1.5s ease-out forwards; /* 1초 동안 애니메이션 */
+  animation: fadeIn 1.5s ease-out forwards; 
 }
 
 </style>
 
 
-<?php get_footer(); ?>
+<!-- <?php get_footer(); ?> -->

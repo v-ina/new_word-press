@@ -13,8 +13,8 @@ get_header();
   <style>
     /* Custom dot navigation styles */
     .fp-nav {
-      right: 10px; /* 위치 조정 */
-      top: 50%; /* 수직 가운데 정렬 */
+      right: 10px; 
+      top: 50%; 
       transform: translateY(-50%);
     }
     .fp-nav ul {
@@ -23,31 +23,29 @@ get_header();
       margin: 0;
     }
     .fp-nav li {
-      margin: 5px 0; /* 점 사이 간격 */
+      margin: 5px 0; 
     }
     .fp-nav a {
-      width: 15px; /* 점 크기 */
-      height: 15px; /* 점 크기 */
-      background-color: transparent; /* 배경 투명 */
-      border: 2px solid #fff; /* 테두리 색상 */
-      border-radius: 50%; /* 원형 */
+      width: 15px; 
+      height: 15px; 
+      background-color: transparent; 
+      border: 2px solid #fff; 
+      border-radius: 50%; 
       display: block;
       transition: background-color 0.3s, transform 0.3s;
     }
     .fp-nav a.active {
-      background-color: #f0b34d; /* 활성화된 점 색상 */
-      transform: scale(1.2); /* 크기 변화 */
+      background-color: #f0b34d; 
+      transform: scale(1.2); 
     }
     .fp-nav a:hover {
-      background-color: #f0b34d; /* 호버 색상 */
+      background-color: #f0b34d; 
     }
-    /* 텍스트 제거 */
     .fp-tooltip {
       display: none !important;
     }
-    /* Use similar style to .service-title for dot hover/focus */
     .fp-nav a.active, .fp-nav a:hover {
-      border: 2px solid #f0b34d; /* 호버/활성화된 점의 테두리 색 */
+      border: 2px solid #f0b34d; 
     }
   </style>
 </head>
@@ -55,6 +53,22 @@ get_header();
 <main id="primary" class="site-main scrollable-sections">
   <!-- FullPage Wrapper -->
   <div id="fullpage">
+
+    <!-- Section 0 : Accueil -->
+      <section class="section home-entry relative">
+        <div class="flex justify-center items-center w-full h-full">
+          <h1 class="font-title text-[82px] text-semibold uppercase mx-auto text-center">plus un music</h1>
+
+        </div>
+        <div class="scroll-indicator absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce -ms-20">
+          <span class="text-scroll mt-2 text-sm animate-shake pt-4 ">Scroll</span>
+    <div class="chevron">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </div>
+    </section>
 
     <!-- Section 1 : Heading -->
     <section class="section">
@@ -92,10 +106,8 @@ get_header();
       <?php
       if (have_rows('section-service-details')):
         while (have_rows('section-service-details')): the_row();
-
           $services = get_sub_field('service');
           get_template_part('template-parts/services', 'wheel', array('services' => $services));
-
         endwhile;
       endif;
       ?>
@@ -150,15 +162,47 @@ get_header();
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     new fullpage('#fullpage', {
-      autoScrolling: true, // 자동 스크롤 활성화
-      scrollHorizontally: false, // 수평 스크롤 비활성화
-      navigation: true, // 내비게이션 버튼 활성화
-      navigationPosition: 'right', // 내비게이션 위치
-      navigationTooltips: [' ', ' ', ' ', ' ', ' ', ' '], // 각 섹션에 대한 툴팁 제거 (빈 문자열로)
-      showActiveTooltip: false, // 활성화된 툴팁 표시 비활성화
-      slidesNavigation: true, // 슬라이드 내비게이션
-      scrollOverflow: true, // 스크롤이 넘칠 경우 자동으로 스크롤 가능
-      lazyLoading: true, // 지연 로딩 활성화
+      autoScrolling: true, 
+      scrollHorizontally: false, 
+      navigation: true, 
+      navigationPosition: 'right', 
+      navigationTooltips: [' ', ' ', ' ', ' ', ' ', ' '], 
+      showActiveTooltip: false, 
+      slidesNavigation: true, 
+      scrollOverflow: true, 
+      lazyLoading: true, 
+      afterLoad: function (origin, destination, direction) {
+      // 현재 섹션 안의 fade-in 대상 요소를 선택하여 fade-in 클래스 추가
+      const section = document.querySelectorAll('.section')[destination.index];
+      const fadeElements = section.querySelectorAll('.fade-element');
+      
+      fadeElements.forEach((element) => {
+        element.classList.add('fade-in');  // fade-in 애니메이션 적용
+      });
+    },
+    onLeave: function (origin, destination, direction) {
+      // 섹션을 떠날 때, 해당 섹션 안의 fade-in된 요소들에서 fade-in 클래스 제거
+      const section = document.querySelectorAll('.section')[origin.index];
+      const fadeElements = section.querySelectorAll('.fade-element');
+      
+      fadeElements.forEach((element) => {
+        element.classList.remove('fade-in');  // fade-in 애니메이션 제거
+      });
+    }
     });
   });
 </script>
+
+<style>
+/* 기본적으로 요소들은 숨겨져 있다가 */
+.fade-element {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* fade-in 애니메이션을 적용할 때 */
+.fade-element.fade-in {
+  opacity: 1;
+}
+
+</style>

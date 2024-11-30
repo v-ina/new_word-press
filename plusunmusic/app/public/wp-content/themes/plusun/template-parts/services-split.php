@@ -24,7 +24,7 @@ $encart_2 = $args['inserts'][1];
       <div class="services__half services__half--left" id="leftHalf">
         <div class="services__content bg-gradient-blue">
           <?php if (!empty($encart_1['title'])) : ?>
-            <p class="services__title font-title">
+            <p class="services__title font-title services__title--left">
               <?php echo esc_html($encart_1['title']); ?>
             </p>
           <?php endif; ?>
@@ -48,7 +48,7 @@ $encart_2 = $args['inserts'][1];
       <div class="services__half services__half--right" id="rightHalf">
         <div class="services__content bg-gradient-black">
           <?php if (!empty($encart_2['title'])) : ?>
-            <p class="services__title font-title">
+            <p class="services__title font-title services__title--right">
               <?php echo esc_html($encart_2['title']); ?>
             </p>
           <?php endif; ?>
@@ -74,14 +74,26 @@ $encart_2 = $args['inserts'][1];
   document.addEventListener('DOMContentLoaded', function() {
     const rightHalf = document.querySelector('.services__half--right');
     const leftHalf = document.querySelector('.services__half--left');
+    const rightHalfTitle = document.querySelector('.services__title--right');
+    const leftHalfTitle = document.querySelector('.services__title--left');
 
     if (rightHalf && leftHalf) {
       rightHalf.addEventListener('mouseenter', () => {
         leftHalf.classList.add('shrink');
+        leftHalfTitle.classList.add('show-plus')
+        rightHalfTitle.classList.remove('show-plus')
       });
-
       rightHalf.addEventListener('mouseleave', () => {
         leftHalf.classList.remove('shrink');
+      });
+
+      leftHalf.addEventListener('mouseenter', () => {
+        righttHalf.classList.add('shrink');
+        righttHalfTitle.classList.add('show-plus')
+        leftHalfTitle.classList.remove('show-plus')
+      });
+      leftHalf.addEventListener('mouseleave', () => {
+        rightHalf.classList.remove('shrink');
       });
     }
   });
@@ -136,7 +148,7 @@ $encart_2 = $args['inserts'][1];
     margin: 0 auto;
     margin-top: 1.5rem;
     margin-bottom: 2rem;
-    width: 60%;
+    width: 55%;
   }
 
   /* Hover effects */
@@ -166,9 +178,30 @@ $encart_2 = $args['inserts'][1];
     transform: rotate(-90deg);
     font-size: 32px;
     transform-origin: center;
+    white-space: nowrap;
+    max-width: none;
+    position: relative; 
   }
 
-  /* Right side effects */
+  .services__half--left:hover + .services__half--right .services__title::before,
+  .services__half--left:hover + .services__half--right .services__title::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+    font-size: 32px; 
+    color: var(--color-beige);
+  }
+
+  .services__half--left:hover + .services__half--right .services__title::before {
+    left: -40px; 
+  }
+
+  .services__half--left:hover + .services__half--right .services__title::after {
+    right: -40px; 
+  }
+
+    /* Right side effects */
   .services__half--right:hover {
     width: 75%;
   }
@@ -181,6 +214,31 @@ $encart_2 = $args['inserts'][1];
     transform: rotate(-90deg);
     font-size: 32px;
     transform-origin: center;
+    white-space: nowrap;
+    max-width: none;
+    position: relative; 
+  }
+
+  .services__half--left.shrink .services__title::before,
+  .services__half--left.shrink .services__title::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 32px; 
+    color: var(--color-beige);
+  }
+
+  .services__half--left.shrink .services__title::before {
+    left: -40px; 
+  }
+
+  .services__half--left.shrink .services__title::after {
+    right: -40px; 
+  }
+
+  .services__title{
+    max-width : 600px;
   }
 
   /* Animation */

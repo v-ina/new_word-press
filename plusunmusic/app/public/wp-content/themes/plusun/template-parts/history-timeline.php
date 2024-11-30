@@ -23,7 +23,7 @@ $date_blocks = $args['date_blocks'];
     $description = $block['description'];
     $isEven = ($index + 1) % 2 == 0;
     ?>
-    <div class="timeline__item <?php echo $isEven ? 'timeline__item--right' : 'timeline__item--left'; ?>">
+    <div class="timeline__item fade-in-timeline <?php echo $isEven ? 'timeline__item--right' : 'timeline__item--left'; ?>">
       <div class="timeline__content content-beige">
         <span class="timeline__year"><?php echo esc_html($year); ?></span>
         <div class="timeline__description content-beige"><?php echo wp_kses_post($description); ?></div>
@@ -98,6 +98,17 @@ $date_blocks = $args['date_blocks'];
     margin-left: auto;
   }
 
+.fade-in-timeline {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-timeline.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
   /* Responsive Design */
   @media screen and (max-width: 768px) {
     .timeline__line {
@@ -122,3 +133,25 @@ $date_blocks = $args['date_blocks'];
     }
   }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const fadeElements = document.querySelectorAll(".fade-in-timeline");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target); 
+          }
+        });
+      },
+      {
+        root: null, 
+        threshold: 0, 
+        rootMargin: "-30% 0px", 
+      }
+    );
+    fadeElements.forEach((el) => observer.observe(el));
+  });
+</script>

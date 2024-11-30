@@ -138,6 +138,10 @@ document.addEventListener('DOMContentLoaded', function () {
         centeredSlides: true,
         slideToClickedSlide: true,
         allowTouchMove: false, 
+        mousewheel: {
+            forceToAxis: false, // 세로/가로 방향 제한
+            releaseOnEdges: true, // 가장자리에서 스크롤 동작 허용
+        },
         breakpoints: {
             0: {
                 slidesPerView: 1,

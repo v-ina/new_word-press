@@ -12,7 +12,7 @@ $title = isset($args['title']) ? $args['title'] : '';
 $color = isset($args['color']) && $args['color'] === 'black' ? 'black' : 'beige';
 ?>
 
-<div class="decorated-title-wrapper">
+<div class="decorated-title-wrapper fade-in">
   <span class="service-title lines-decoration <?php echo esc_attr($color); ?>">
     <span class="top-bars"><i></i></span>
     <?php echo esc_html($title); ?>
@@ -101,6 +101,27 @@ $color = isset($args['color']) && $args['color'] === 'black' ? 'black' : 'beige'
   .lines-decoration.black .bottom-bars i {
     background-color: var(--color-black);
   }
+
+  @keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s ease-out forwards;
+}
+
 
   /* Responsive adjustments */
   @media (max-width: 1024px) {
