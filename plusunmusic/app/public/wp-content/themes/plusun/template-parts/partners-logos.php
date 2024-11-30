@@ -23,7 +23,6 @@ $partners = $args['partners'];
       <h2 class="service-title between-plus beige inline-block text-center mb-12">
         <?php echo esc_html($title); ?>
       </h2>
-
       <div class="partners">
         <?php for ($i = 0; $i < 3; $i++) : ?>
           <div class="partners__line <?php echo $i === 1 ? 'second-parallel' : ($i === 0 ? 'first-parallel' : 'third-parallel'); ?> flex gap-24 items-center my-14">
@@ -43,22 +42,18 @@ $partners = $args['partners'];
   .partners {
     overflow: hidden;
   }
-
   .partners__line {
     will-change: transform;
     white-space: nowrap;
     gap: 96px !important;
   }
-
   .partners__line img {
     user-select: none;
     -webkit-user-drag: none;
   }
-
   .header-darked {
   overflow-x: hidden;
   }
-
   .partners {
     overflow: hidden; 
     position: relative;
@@ -70,15 +65,12 @@ $partners = $args['partners'];
     const pTag1 = document.querySelector('.first-parallel');
     const pTag2 = document.querySelector('.second-parallel');
     const pTag3 = document.querySelector('.third-parallel');
-
     const partners1 = Array.from(pTag1.querySelectorAll('img'));
     const partners2 = Array.from(pTag2.querySelectorAll('img'));
     const partners3 = Array.from(pTag3.querySelectorAll('img'));
-
     let count1 = 0;
     let count2 = 0;
     let count3 = 0;
-
     function marqueeText(count, element, partners, direction, speed) {
       const elementWidth = element.scrollWidth;
       count += speed;
@@ -109,15 +101,14 @@ $partners = $args['partners'];
       line.style.display = 'flex';
       line.style.whiteSpace = 'nowrap';
           if (direction === 'right') {
-        line.style.transform = `translateX(-${logoWidth * 2}px)`; // 오른쪽으로 늘리기
+        line.style.transform = `translateX(-${logoWidth * 2}px)`; 
       } else if (direction === 'left') {
-        line.style.transform = `translateX(${logoWidth * 2}px)`; // 왼쪽으로 늘리기
+        line.style.transform = `translateX(${logoWidth * 2}px)`; 
       }
     }
     extendLineWithLogos(pTag1, 'right'); 
     extendLineWithLogos(pTag2, 'left');  
     extendLineWithLogos(pTag3, 'right'); 
-
     animate(); 
   });
 </script>

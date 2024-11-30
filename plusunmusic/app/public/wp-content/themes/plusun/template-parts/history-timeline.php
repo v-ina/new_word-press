@@ -48,7 +48,6 @@ $date_blocks = $args['date_blocks'];
     width: 45px;
     background-repeat: repeat-y;
     background-image: url('/wp-content/themes/plusun/assets/img/ruler-timeline.svg');
-    /* Replace with your line image */
     transform: translateX(-50%);
   }
 
@@ -82,32 +81,29 @@ $date_blocks = $args['date_blocks'];
   }
 
   .timeline__description {
-    color: #E5E1D6;
-    /* Replace with your cream color */
+    color: var(--color-beige);
     font-size: 16px;
     line-height: 1.5;
   }
 
-  /* For right-aligned items, float description to the right */
   .timeline__item--right .timeline__description {
     margin-left: 0;
   }
 
-  /* For left-aligned items, float description to the right */
   .timeline__item--left .timeline__description {
     margin-left: auto;
   }
 
-.fade-in-timeline {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
+  .fade-in-timeline {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
 
-.fade-in-timeline.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+  .fade-in-timeline.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   /* Responsive Design */
   @media screen and (max-width: 768px) {

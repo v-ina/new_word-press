@@ -11,24 +11,23 @@ get_header(); ?>
 
     <!-- Section 1 : Intro -->
     <section class="business-content section-full navigable bg-gradient-black">
-  <div class="max-w-[950px] mx-auto text-center fade-in">
-    <h2 class="text-center">
-      <?php
-      get_template_part('template-parts/title', 'bars', array(
-        'title' => get_the_title(),
-        'color' => 'beige'
-      ));
-      ?>
-    </h2>
-    <div class="content-beige">
-      <?php the_content(); ?>
-    </div>
-    <div class="mt-12">
-      <a href="/contact" class="btn btn-white">+ En savoir plus +</a>
-    </div>
-  </div>
-</section>
-
+      <div class="max-w-[950px] mx-auto text-center fade-in">
+        <h2 class="text-center">
+          <?php
+          get_template_part('template-parts/title', 'bars', array(
+            'title' => get_the_title(),
+            'color' => 'beige'
+          ));
+          ?>
+        </h2>
+        <div class="content-beige">
+          <?php the_content(); ?>
+        </div>
+        <div class="mt-12">
+          <a href="/contact" class="btn btn-white">+ En savoir plus +</a>
+        </div>
+      </div>
+    </section>
 
     <!-- Section 2 : Service details section -->
     <?php
@@ -104,6 +103,12 @@ get_header(); ?>
     -webkit-user-drag: none;
   }
 
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    animation: fadeIn 1.5s ease-out forwards; 
+  }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -114,14 +119,4 @@ get_header(); ?>
     transform: translateY(0);
   }
 }
-
-.fade-in {
-  opacity: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  animation: fadeIn 1.5s ease-out forwards; 
-}
-
 </style>
-
-
-<!-- <?php get_footer(); ?> -->

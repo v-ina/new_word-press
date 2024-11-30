@@ -23,12 +23,11 @@ get_header(); ?>
         <!-- Sub Categories Slider -->
         <?php if (have_rows('sous_categorie')): ?>
           <?php
-          // Store all titles in an array first
           $all_titles = array();
           while (have_rows('sous_categorie')): the_row();
             $all_titles[] = get_sub_field('title');
           endwhile;
-          reset_rows(); // Reset the loop for the main content
+          reset_rows(); 
           ?>
 
           <div class="glide" id="subcategories-content-slider">
@@ -88,7 +87,6 @@ get_header(); ?>
               </button>
             </div>
           </div>
-
         </div>
 
         <!-- Graphic waves -->
@@ -113,85 +111,72 @@ get_header(); ?>
       transition: transform 0.2s ease, translateY 0.2s ease;
     }
 
-
     #category-titles-slider {
-  max-width: 40%; 
-  margin: 0 auto; 
-  transform: translateY(-20px); 
-}
+      max-width: 40%; 
+      margin: 0 auto; 
+      transform: translateY(-20px); 
+    }
 
-#category-titles-slider .glide__slides {
-  display: flex;
-  align-items: center; 
-  justify-content: center;
-  min-height: 150px; 
+    #category-titles-slider .glide__slides {
+      display: flex;
+      align-items: center; 
+      justify-content: center;
+      min-height: 150px; 
+    }
 
-}
-
-#category-titles-slider .glide__slide h3 {
-  font-size: 1.2rem; 
-  padding: 10px; 
-}
-
-
-
+    #category-titles-slider .glide__slide h3 {
+      font-size: 1.2rem; 
+      padding: 10px; 
+    }
   </style>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-  var glideTitles = new Glide('#category-titles-slider', {
-    type: 'slider',
-    startAt: 0,
-    perView: 3,
-    focusAt: 'center',
-    gap: 10,
-    animationDuration: 600,
-    rewind: true,
-    bound: true, 
-  }).mount();
+      var glideTitles = new Glide('#category-titles-slider', {
+        type: 'slider',
+        startAt: 0,
+        perView: 3,
+        focusAt: 'center',
+        gap: 10,
+        animationDuration: 600,
+        rewind: true,
+        bound: true, 
+      }).mount();
+      var glideContent = new Glide('#subcategories-content-slider', {
+        type: 'slider',
+        startAt: 0,
+        perView: 1,
+        focusAt: 'center',
+        gap: 10,
+        animationDuration: 600,
+        rewind: true,
+        bound: true,
+      }).mount();
 
-  var glideContent = new Glide('#subcategories-content-slider', {
-    type: 'slider',
-    startAt: 0,
-    perView: 1,
-    focusAt: 'center',
-    gap: 10,
-    animationDuration: 600,
-    rewind: true,
-    bound: true,
-  }).mount();
-
-  function updateSlidePositions() {
-    const currentIndex = glideContent.index; 
-    const slides = document.querySelectorAll('#category-titles-slider .glide__slide');
-
-    slides.forEach((slide, index) => {
-      const offset = Math.abs(index - currentIndex); 
-      const translateY = offset * 50; 
-      slide.style.transform = `translateY(${translateY}px)`; 
+      function updateSlidePositions() {
+        const currentIndex = glideContent.index; 
+        const slides = document.querySelectorAll('#category-titles-slider .glide__slide');
+        slides.forEach((slide, index) => {
+          const offset = Math.abs(index - currentIndex); 
+          const translateY = offset * 50; 
+          slide.style.transform = `translateY(${translateY}px)`; 
+        });
+      }
+      glideContent.on(['move', 'updated'], function () {
+        updateSlidePositions();
+      });
+      updateSlidePositions();
+      const prevButton = document.querySelector('.glide__arrow--left');
+      const nextButton = document.querySelector('.glide__arrow--right');
+      prevButton.addEventListener('click', function () {
+        glideTitles.go('<');
+        glideContent.go('<');
+      });
+      nextButton.addEventListener('click', function () {
+        glideTitles.go('>');
+        glideContent.go('>');
+      });
     });
-  }
-
-  glideContent.on(['move', 'updated'], function () {
-    updateSlidePositions();
-  });
-
-  updateSlidePositions();
-
-  const prevButton = document.querySelector('.glide__arrow--left');
-  const nextButton = document.querySelector('.glide__arrow--right');
-
-  prevButton.addEventListener('click', function () {
-    glideTitles.go('<');
-    glideContent.go('<');
-  });
-
-  nextButton.addEventListener('click', function () {
-    glideTitles.go('>');
-    glideContent.go('>');
-  });
-});
-
   </script>
 
   <?php endwhile; ?>

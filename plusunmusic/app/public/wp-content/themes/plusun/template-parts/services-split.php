@@ -76,7 +76,6 @@ $encart_2 = $args['inserts'][1];
     const leftHalf = document.querySelector('.services__half--left');
     const rightHalfTitle = document.querySelector('.services__title--right');
     const leftHalfTitle = document.querySelector('.services__title--left');
-
     if (rightHalf && leftHalf) {
       rightHalf.addEventListener('mouseenter', () => {
         leftHalf.classList.add('shrink');
@@ -86,7 +85,6 @@ $encart_2 = $args['inserts'][1];
       rightHalf.addEventListener('mouseleave', () => {
         leftHalf.classList.remove('shrink');
       });
-
       leftHalf.addEventListener('mouseenter', () => {
         righttHalf.classList.add('shrink');
         righttHalfTitle.classList.add('show-plus')

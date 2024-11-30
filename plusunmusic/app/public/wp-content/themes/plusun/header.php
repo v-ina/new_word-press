@@ -79,47 +79,45 @@
 			</div>
 		</nav>
 
-<style>
-	.menu-parent-trigger {
-			grid-column: 1; 
-	}
-	.menu-trigger {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		width: 35px;
-		height: 24px;
-		background: transparent;
-		border: none;
-		cursor: pointer;
-		padding: 0;
-		margin: 20px;
-	}
-
-	.menu-line {
-		width: 100%;
-		height: 3px;
-		background-color: #fffbe5;
-		border-radius: 2px;
-		transition: transform 0.3s ease, opacity 0.3s ease;
-	}
-	.menu-trigger.oepn {
-		background-color: #F75711;
-	}
-	.menu-trigger.open .menu-line:nth-child(1) {
-		transform: rotate(90deg) translate(5px , 10px);
-		background-color: #F75711;
-	}
-	.menu-trigger.open .menu-line:nth-child(2) {
-		transform: rotate(90deg) translate(-5px, 0px);
-		background-color: #F75711;
-	}
-	.menu-trigger.open .menu-line:nth-child(3) {
-		transform: rotate(80deg) translate(-13px, -15px);
-		background-color: #F75711;
-	}
-</style>
-
+	<style>
+		.menu-parent-trigger {
+				grid-column: 1; 
+		}
+		.menu-trigger {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			width: 35px;
+			height: 24px;
+			background: transparent;
+			border: none;
+			cursor: pointer;
+			padding: 0;
+			margin: 20px;
+		}
+		.menu-line {
+			width: 100%;
+			height: 3px;
+			background-color: #fffbe5;
+			border-radius: 2px;
+			transition: transform 0.3s ease, opacity 0.3s ease;
+		}
+		.menu-trigger.oepn {
+			background-color: #F75711;
+		}
+		.menu-trigger.open .menu-line:nth-child(1) {
+			transform: rotate(90deg) translate(5px , 10px);
+			background-color: #F75711;
+		}
+		.menu-trigger.open .menu-line:nth-child(2) {
+			transform: rotate(90deg) translate(-5px, 0px);
+			background-color: #F75711;
+		}
+		.menu-trigger.open .menu-line:nth-child(3) {
+			transform: rotate(80deg) translate(-13px, -15px);
+			background-color: #F75711;
+		}
+	</style>
 	<!-- Navigation script -->
 	<script>
 		document.querySelector('.menu-trigger').addEventListener('click', function() {
@@ -128,12 +126,9 @@
 			document.querySelector('.site-header').classList.toggle('site-header--open');
 			document.querySelector('.overlay').classList.toggle('show');
 		});
-
-		// Header background control
 		document.addEventListener('DOMContentLoaded', function() {
 			const header = document.querySelector('.site-header');
 			const defaultIsDark = header.classList.contains('site-header--dark');
-
 			const observer = new IntersectionObserver((entries) => {
 				entries.forEach(entry => {
 					if (entry.isIntersecting) {
@@ -142,8 +137,6 @@
 						const sectionRect = section.getBoundingClientRect();
 						const sectionCenter = sectionRect.top + (sectionRect.height / 2);
 						const viewportCenter = viewportHeight / 2;
-
-						// Adjust header based on section visibility
 						if (Math.abs(sectionCenter - viewportCenter) < 100) {
 							if (section.classList.contains('header-darked')) {
 								header.classList.add('site-header--dark');
@@ -163,13 +156,11 @@
 				threshold: [0, 0.25, 0.5, 0.75, 1],
 				rootMargin: '0px'
 			});
-
 			document.querySelectorAll('section.navigable').forEach(section => {
 				observer.observe(section);
 			});
 		});
 	</script>
 </div>
-
 </body>
 </html>

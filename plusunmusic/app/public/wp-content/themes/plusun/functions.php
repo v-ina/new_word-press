@@ -138,13 +138,14 @@ function plusun_widgets_init()
 }
 add_action('widgets_init', 'plusun_widgets_init');
 
+// carousel library
 function enqueue_swiper_assets() {
     wp_enqueue_style( 'swiper-style', 'https://unpkg.com/swiper@8/swiper-bundle.min.css' );
     wp_enqueue_script( 'swiper-script', 'https://unpkg.com/swiper@8/swiper-bundle.min.js', array(), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_swiper_assets' );
 
-
+// custom script
 function enqueue_custom_scripts() {
   wp_enqueue_script('fade-in-timeline', get_template_directory_uri() . '/js/fade-in-timeline.js', array(), null, true);
 }

@@ -103,25 +103,24 @@ $color = isset($args['color']) && $args['color'] === 'black' ? 'black' : 'beige'
   }
 
   @keyframes fadeIn {
-  0% {
+    0% {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
     opacity: 0;
-    transform: translateY(-40px);
+    animation: fadeIn 1.5s ease-out forwards;
   }
-  50% {
-    opacity: 0.5;
-    transform: translateY(-10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 1.5s ease-out forwards;
-}
-
 
   /* Responsive adjustments */
   @media (max-width: 1024px) {
