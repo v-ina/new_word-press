@@ -2526,3 +2526,107 @@ Stack trace:
 [27-Nov-2024 22:50:42 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 49152 bytes) in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-service.php on line 326
 [27-Nov-2024 22:50:59 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 49152 bytes) in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-service.php on line 326
 [30-Nov-2024 09:16:20 UTC] PHP Parse error:  syntax error, unexpected token "endif" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-service.php on line 80
+[05-Dec-2024 18:21:23 UTC] PHP Warning:  file_get_contents(http://localhost:10003/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-20-at-19.30.10.jpeg): Failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-includes/class-wp-image-editor-imagick.php on line 156
+[05-Dec-2024 18:21:23 UTC] PHP Warning:  file_get_contents(http://localhost:10003/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-20-at-19.30.10.jpeg): Failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-includes/class-wp-image-editor-imagick.php on line 156
+[06-Dec-2024 21:56:11 UTC] PHP Parse error:  syntax error, unexpected token "endwhile", expecting end of file in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-contact.php on line 29
+[06-Dec-2024 22:21:05 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "THEMA_URL" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-contact.php:30
+Stack trace:
+#0 /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-includes/template-loader.php(106): include()
+#1 /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-blog-header.php(19): require_once('/Users/yeonsoo/...')
+#2 /Users/yeonsoo/Local Sites/plusunmusic/app/public/index.php(17): require('/Users/yeonsoo/...')
+#3 {main}
+  thrown in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-contact.php on line 30
+[07-Dec-2024 12:06:47 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:06:47 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:06:47 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:06:47 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:06:47 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:06:47 UTC] PHP Warning:  Undefined array key "description" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:10:06 UTC] PHP Warning:  Undefined array key "contenu" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:10:06 UTC] PHP Warning:  Undefined array key "contenu" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:10:06 UTC] PHP Warning:  Undefined array key "contenu" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:10:06 UTC] PHP Warning:  Undefined array key "contenu" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:10:06 UTC] PHP Warning:  Undefined array key "contenu" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:10:06 UTC] PHP Warning:  Undefined array key "contenu" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:11:45 UTC] PHP Warning:  Undefined array key "contenu" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:11:45 UTC] PHP Warning:  Undefined array key "contenu" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:11:45 UTC] PHP Warning:  Undefined array key "contenu" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:11:45 UTC] PHP Warning:  Undefined array key "contenu" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:11:45 UTC] PHP Warning:  Undefined array key "contenu" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 12:11:45 UTC] PHP Warning:  Undefined array key "contenu" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 76
+[07-Dec-2024 13:34:17 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/functions.php on line 154
+[07-Dec-2024 13:34:17 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/functions.php on line 154
+[07-Dec-2024 14:41:35 UTC] PHP Warning:  Undefined variable $serviceDetailData in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 82
+[07-Dec-2024 15:35:09 UTC] PHP Warning:  Undefined variable $serviceDetailData in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 15:35:09 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 15:35:42 UTC] PHP Warning:  Undefined variable $serviceDetailData in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 15:35:42 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 15:35:42 UTC] PHP Warning:  Undefined variable $serviceDetailData in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 80
+[07-Dec-2024 22:32:35 UTC] PHP Warning:  Undefined variable $services in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 61
+[07-Dec-2024 22:32:35 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 61
+[07-Dec-2024 22:34:23 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:34:23 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:34:23 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 79
+[07-Dec-2024 22:39:51 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:39:51 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:40:36 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:40:36 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:40:45 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:40:45 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:42:42 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:42:42 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:45:29 UTC] PHP Parse error:  syntax error, unexpected token "/" in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 85
+[07-Dec-2024 22:46:00 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:46:00 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:46:23 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:46:23 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:48:23 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:48:23 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:49:48 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:49:48 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:50:27 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:50:27 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:50:54 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:50:54 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:52:43 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:52:43 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:53:54 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:53:54 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:55:40 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:55:40 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:57:51 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 22:57:51 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:06:26 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:06:26 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:15:58 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:15:58 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:18:30 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:18:30 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:19:14 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:19:14 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:23:19 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:23:19 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:30:07 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:30:07 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:30:27 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:30:27 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:30:59 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:30:59 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:31:19 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:31:19 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:31:52 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:31:52 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:32:12 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[07-Dec-2024 23:32:12 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 69
+[08-Dec-2024 08:38:22 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 54
+[08-Dec-2024 08:38:22 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 54
+[08-Dec-2024 08:43:44 UTC] PHP Warning:  Undefined variable $args in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 53
+[08-Dec-2024 08:43:44 UTC] PHP Warning:  Trying to access array offset on null in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 53
+[08-Dec-2024 16:48:23 UTC] PHP Parse error:  Unclosed '{' on line 68 in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-parts/homepage-heading.php on line 171
+[08-Dec-2024 17:10:46 UTC] PHP Warning:  Undefined variable $sectionHeadingData in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 48
+[08-Dec-2024 17:52:28 UTC] PHP Parse error:  syntax error, unexpected end of file in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 581
+[08-Dec-2024 17:53:24 UTC] PHP Parse error:  syntax error, unexpected end of file in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 580
+[08-Dec-2024 17:55:11 UTC] PHP Parse error:  syntax error, unexpected end of file in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 580
+[08-Dec-2024 17:55:12 UTC] PHP Parse error:  syntax error, unexpected end of file in /Users/yeonsoo/Local Sites/plusunmusic/app/public/wp-content/themes/plusun/template-pages/template-homepage.php on line 580

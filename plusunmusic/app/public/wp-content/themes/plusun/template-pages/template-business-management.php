@@ -106,17 +106,18 @@ get_header(); ?>
   .fade-in {
     opacity: 0;
     transition: opacity 0.5s ease, transform 0.5s ease;
-    animation: fadeIn 1.5s ease-out forwards; 
+    animation: fadeIn 1.5s ease-out forwards;
   }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-40px); 
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 </style>

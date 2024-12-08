@@ -18,7 +18,7 @@ $encart_1 = $args['inserts'][0];
 $encart_2 = $args['inserts'][1];
 ?>
 
-<section class="services section-full navigable">
+<section class="services w-full navigable">
   <div class="services__container">
     <?php if ($encart_1) : ?>
       <div class="services__half services__half--left" id="leftHalf">
@@ -36,7 +36,7 @@ $encart_2 = $args['inserts'][1];
             <?php endif; ?>
             <?php if (!empty($encart_1['action_text'])) : ?>
               <a href="<?php echo esc_url('/labels-artists-services/'); ?>" class="btn btn-white">
-                <?php echo esc_html($encart_1['action_text']); ?>
+                + <?php echo esc_html($encart_1['action_text']); ?> +
               </a>
             <?php endif; ?>
           </div>
@@ -60,7 +60,7 @@ $encart_2 = $args['inserts'][1];
             <?php endif; ?>
             <?php if (!empty($encart_2['action_text'])) : ?>
               <a href="<?php echo esc_url('/plus-un-business-management/'); ?>" class="btn btn-white">
-                <?php echo esc_html($encart_2['action_text']); ?>
+                + <?php echo esc_html($encart_2['action_text']); ?> +
               </a>
             <?php endif; ?>
           </div>
@@ -237,6 +237,15 @@ $encart_2 = $args['inserts'][1];
 
   .services__title{
     max-width : 600px;
+  }
+
+  .services__half a.btn {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .services__half a.btn:hover {
+    background-color: var(--color-black);
+    color: var(--color-main);
   }
 
   /* Animation */

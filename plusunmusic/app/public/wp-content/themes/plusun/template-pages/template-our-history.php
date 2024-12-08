@@ -60,8 +60,78 @@ get_header(); ?>
       </section>
 
       <!-- Values section -->
-      <section>
+      <section class="section-full bg-gradient-black pb-12">
+        <div class="w-full max-w-[1600px] mx-auto pt-40 px-5">
+          <div class="text-center pb-12">
+            <p class="between-plus beige inline-block">Nos valeurs</p>
+          </div>
+          <?php if (have_rows('our_values')): ?>
+            <div class="values-container">
+              <?php while (have_rows('our_values')) : the_row();
+                $title = get_sub_field('title');
+                $description = get_sub_field('description');
+              ?>
+                <div class="value-item p-12 mb-8" data-description="<?php echo esc_attr($description); ?>">
+                  <p class="publishing-title font-title text-white uppercase font-medium text-[40px]">
+                    <?php echo $title; ?>
+                  </p>
+                  <div class="grid grid-cols-2">
+                    <div></div>
+                    <div class="white-content description hidden">
+                      <?php echo $description; ?>
+                    </div>
+                  </div>
+                </div>
+              <?php endwhile; ?>
+            </div>
+          <?php endif; ?>
+        </div>
+        <style>
+          .value-item {
+            background: var(--bg-gradient-black);
+            cursor: pointer;
+          }
+
+          .value-item.active {
+            background: linear-gradient(5deg, #F75711 -20.72%, #FFFADE 314.89%);
+          }
+
+          .description {
+            margin-top: 20px;
+            color: white;
+          }
+
+          .hidden {
+            display: none;
+          }
+        </style>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const valueItems = document.querySelectorAll('.value-item');
+
+            valueItems.forEach(item => {
+              item.addEventListener('click', function() {
+                const description = this.querySelector('.description');
+                const wasActive = this.classList.contains('active');
+
+                // Reset all items
+                valueItems.forEach(otherItem => {
+                  otherItem.classList.remove('active');
+                  otherItem.querySelector('.description').classList.add('hidden');
+                });
+
+                if (!wasActive) {
+                  this.classList.add('active');
+                  description.classList.remove('hidden');
+                }
+              });
+            });
+          });
+        </script>
       </section>
+
+
     </div>
   <?php endwhile; ?>
 

@@ -42,26 +42,30 @@ $partners = $args['partners'];
   .partners {
     overflow: hidden;
   }
+
   .partners__line {
     will-change: transform;
     white-space: nowrap;
     gap: 96px !important;
   }
+
   .partners__line img {
     user-select: none;
     -webkit-user-drag: none;
   }
+
   .header-darked {
-  overflow-x: hidden;
+    overflow-x: hidden;
   }
+
   .partners {
-    overflow: hidden; 
+    overflow: hidden;
     position: relative;
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function() {
     const pTag1 = document.querySelector('.first-parallel');
     const pTag2 = document.querySelector('.second-parallel');
     const pTag3 = document.querySelector('.third-parallel');
@@ -71,27 +75,30 @@ $partners = $args['partners'];
     let count1 = 0;
     let count2 = 0;
     let count3 = 0;
+
     function marqueeText(count, element, partners, direction, speed) {
       const elementWidth = element.scrollWidth;
       count += speed;
-      if (count > partners.length * 2.13 ) { 
-        count = 0;  
+      if (count > partners.length * 2.13) {
+        count = 0;
       }
-      const logoWidth = partners[0].offsetWidth + 96;  
+      const logoWidth = partners[0].offsetWidth + 96;
       element.style.transform = `translateX(${direction * count * logoWidth}px)`;
       return count;
     }
+
     function animate() {
-      const speed = 0.01; 
-      count1 = marqueeText(count1, pTag1, partners1, -1, speed); 
-      count2 = marqueeText(count2, pTag2, partners2, 1, speed); 
-      count3 = marqueeText(count3, pTag3, partners3, -1, speed); 
-      window.requestAnimationFrame(animate); 
+      const speed = 0.003;
+      count1 = marqueeText(count1, pTag1, partners1, -1, speed);
+      count2 = marqueeText(count2, pTag2, partners2, 1, speed);
+      count3 = marqueeText(count3, pTag3, partners3, -1, speed);
+      window.requestAnimationFrame(animate);
     }
+
     function extendLineWithLogos(line, direction) {
       const logos = Array.from(line.querySelectorAll('img'));
       const logoWidth = logos[0].offsetWidth + 96;
-      const requiredCopies = Math.ceil(window.innerWidth / logoWidth) * 2; 
+      const requiredCopies = Math.ceil(window.innerWidth / logoWidth) * 2;
       let originalContent = line.innerHTML;
       let newContent = originalContent;
       for (let i = 0; i < requiredCopies; i++) {
@@ -100,15 +107,15 @@ $partners = $args['partners'];
       line.innerHTML = newContent;
       line.style.display = 'flex';
       line.style.whiteSpace = 'nowrap';
-          if (direction === 'right') {
-        line.style.transform = `translateX(-${logoWidth * 2}px)`; 
+      if (direction === 'right') {
+        line.style.transform = `translateX(-${logoWidth * 2}px)`;
       } else if (direction === 'left') {
-        line.style.transform = `translateX(${logoWidth * 2}px)`; 
+        line.style.transform = `translateX(${logoWidth * 2}px)`;
       }
     }
-    extendLineWithLogos(pTag1, 'right'); 
-    extendLineWithLogos(pTag2, 'left');  
-    extendLineWithLogos(pTag3, 'right'); 
-    animate(); 
+    extendLineWithLogos(pTag1, 'right');
+    extendLineWithLogos(pTag2, 'left');
+    extendLineWithLogos(pTag3, 'right');
+    animate();
   });
 </script>
