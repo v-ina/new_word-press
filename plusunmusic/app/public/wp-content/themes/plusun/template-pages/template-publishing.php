@@ -16,7 +16,6 @@ get_header(); ?>
     <!-- Intro -->
     <section class="section-full bg-gradient-orange">
       <div class="min-h-screen flex flex-col h-full justify-center items-center">
-
         <div class="text-center">
           <h2 class="text-center black-content">
             <?php
@@ -27,32 +26,29 @@ get_header(); ?>
             ?>
           </h2>
         </div>
-
         <div class="max-w-[900px] mx-auto mt-12 text-center white-content">
           <?php the_content(); ?>
         </div>
-
       </div><!-- .entry-content -->
     </section>
 
     <!-- Repeater Content section -->
     <section class="section-full bg-gradient-black">
-      <div class="w-full max-w-[650px] mx-auto pt-40">
+      <div class="w-full max-w-[650px] mx-auto pt-40 ">
         <?php
         if (have_rows('paragraphes')):
           while (have_rows('paragraphes')) : the_row();
             $title = get_sub_field('title');
             $content = get_sub_field('content');
         ?>
-            <div class="py-24">
-              <p class="publishing-title">
-                <?= $title ?>
-              </p>
-
-              <div class="white-content">
-                <?= $content ?>
-              </div>
+          <div class="py-24 ">
+            <p class="publishing-title uppercase beige">
+              <?= $title ?>
+            </p>
+            <div class="white-content">
+              <?= $content ?>
             </div>
+          </div>
         <?php
           endwhile;
         else :
@@ -78,10 +74,7 @@ get_header(); ?>
         </div>
       </div>
     </section>
-
-
   <?php endwhile; ?>
-
   <?php get_footer(); ?>
 </main>
 
@@ -91,4 +84,30 @@ get_header(); ?>
     font-weight: 700;
     color: #fff;
   }
+  #player {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  #player.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const player = document.getElementById('player');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          player.classList.add('visible'); 
+          player.classList.remove('hidden'); 
+        }
+      });
+    }, {
+      threshold: 0.7 
+    });
+    observer.observe(player.parentElement); 
+  });
+</script>

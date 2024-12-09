@@ -108,37 +108,37 @@
     let wheelAccumulator = 0;
     const WHEEL_THRESHOLD = 100;
 
-    function handleWheel(e) {
-      e.preventDefault();
+    // function handleWheel(e) {
+    //   e.preventDefault();
 
-      /*
-       * Special handling for services section:
-       * If we're in the services section and the services container is scrolling,
-       * allow internal scrolling before triggering section navigation
-       */
-      const currentSection = sections[currentSectionIndex];
-      const servicesSection = document.getElementById('service-details');
+    //   /*
+    //    * Special handling for services section:
+    //    * If we're in the services section and the services container is scrolling,
+    //    * allow internal scrolling before triggering section navigation
+    //    */
+    //   const currentSection = sections[currentSectionIndex];
+    //   const servicesSection = document.getElementById('service-details');
 
-      if (currentSection === servicesSection) {
-        const serviceContainer = currentSection.querySelector('.service-container');
-        const scrollTop = serviceContainer.scrollTop;
-        const scrollHeight = serviceContainer.scrollHeight;
-        const clientHeight = serviceContainer.clientHeight;
+    //   if (currentSection === servicesSection) {
+    //     const serviceContainer = currentSection.querySelector('.service-container');
+    //     const scrollTop = serviceContainer.scrollTop;
+    //     const scrollHeight = serviceContainer.scrollHeight;
+    //     const clientHeight = serviceContainer.clientHeight;
 
-        // Allow internal scrolling if not at container boundaries
-        if ((e.deltaY > 0 && scrollTop < scrollHeight - clientHeight) || // Scrolling down
-          (e.deltaY < 0 && scrollTop > 0)) { // Scrolling up
-          serviceContainer.scrollTop += e.deltaY;
-          return; // Prevent page scroll
-        }
-      }
+    //     // Allow internal scrolling if not at container boundaries
+    //     if ((e.deltaY > 0 && scrollTop < scrollHeight - clientHeight) || // Scrolling down
+    //       (e.deltaY < 0 && scrollTop > 0)) { // Scrolling up
+    //       serviceContainer.scrollTop += e.deltaY;
+    //       return; // Prevent page scroll
+    //     }
+    //   }
 
-      wheelAccumulator += Math.abs(e.deltaY);
-      if (wheelAccumulator >= WHEEL_THRESHOLD) {
-        handleScroll(Math.sign(e.deltaY));
-        wheelAccumulator = 0;
-      }
-    }
+    //   wheelAccumulator += Math.abs(e.deltaY);
+    //   if (wheelAccumulator >= WHEEL_THRESHOLD) {
+    //     handleScroll(Math.sign(e.deltaY));
+    //     wheelAccumulator = 0;
+    //   }
+    // }
 
     // Touch event handlers for mobile support
     function handleTouchStart(e) {
@@ -155,15 +155,15 @@
     }
 
     // Event listeners setup
-    mainContainer.addEventListener('wheel', handleWheel, {
-      passive: false
-    });
-    mainContainer.addEventListener('touchstart', handleTouchStart, {
-      passive: true
-    });
-    mainContainer.addEventListener('touchend', handleTouchEnd, {
-      passive: true
-    });
+    // mainContainer.addEventListener('wheel', handleWheel, {
+    //   passive: false
+    // });
+    // mainContainer.addEventListener('touchstart', handleTouchStart, {
+    //   passive: true
+    // });
+    // mainContainer.addEventListener('touchend', handleTouchEnd, {
+    //   passive: true
+    // });
 
     // Initialize page state
     detectInitialSection();

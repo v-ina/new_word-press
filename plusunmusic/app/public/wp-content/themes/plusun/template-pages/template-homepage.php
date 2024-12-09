@@ -128,13 +128,13 @@ get_header();
     </div>
   </section>
 
-    
-  <section class="section" data-section-index="5">
+  <!-- section 5 -->
+  <section class="section relative w-full" data-section-index="5">
     <div class="header-darked w-full navigable bg-gradient-black">
       <div class="min-h-[100vh] flex flex-col justify-center">
-        <div id="player-container" class="w-[900px] max-w-[900px] flex flex-col items-center justify-center mx-auto">
-          <h2 class="service-title between-plus beige inline-block text-center">Publishing</h2>
-          <p class="service-sub-title text-center text-white">
+        <div id="player-container" class="w-[800px] flex flex-col items-center justify-center mx-auto">
+          <h2 class="publishing-title between-plus beige inline-block text-center">Publishing</h2>
+          <p class="publishing-sub-title text-center text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam.
           </p>
@@ -345,20 +345,20 @@ get_header();
   #player {
     opacity: 0;
     overflow: hidden;
-    transform: translateY(150px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(100px);
+    transition: opacity 0.5s ease, transform 1s ease;
   }
   #player.visible {
     opacity: 1;
     transform: translateY(0);
     min-height: 400px !important;
+    transform: translateY(150px);
   }
   #player-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100%; 
   }
   #player-container.no-iframe {
     display: flex;
@@ -370,40 +370,26 @@ get_header();
   #player-container p {
     transition: transform 0.5s ease, position 0.5s ease; 
   }
-  #player-container.no-iframe h2,
-  #player-container.no-iframe p {
-    max-width: 100%; 
-  }
   #player-container iframe {
     border-radius: 12px;
     transition: opacity 0.5s ease, transform 0.5s ease; 
   }
-  #player-container h2 {
-    top: 45%; 
-  }
-  #player-container p {
-    transition: opacity 0.5s ease, transform 0.5s ease; 
-    top: 52%; 
-  }
-  #player-container p.visible {
-    opacity: 1; 
-    transform: translateY(0); 
-  }
-  #player-container h2,
-  #player-container p {
-    transition: transform 0.5s ease, opacity 0.5s ease; 
-  }
-  #player-container.no-iframe h2,
-  #player-container.no-iframe p {
-    opacity: 1; 
+  .publishing-title {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    transition: top 0.5s ease, transform 0.5s ease;
   }
 
-  .service-title, .service-sub-title {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: transform 0.5s ease, top 0.5s ease;
-}
+  .publishing-sub-title {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+    transition: top 0.5s ease, transform 0.5s ease;
+  }
+
 </style>
 
 
@@ -455,8 +441,11 @@ get_header();
   const section5 = document.querySelector('[data-section-index="5"]');
   let hasPlayerAppeared = false;
   let iframeVisible = false;
-  publishingText = document.querySelector('.service-title');
-  publishingSubText = document.querySelector('.service-sub-title');
+  publishingText = document.querySelector('.publishing-title');
+  publishingSubText = document.querySelector('.publishing-sub-title');
+  publishingText.style.transition = 'none';
+  publishingSubText.style.transition = 'none';
+  updateTextPosition();
 
 
   // section 4 : prev titles & next titles
@@ -503,35 +492,31 @@ get_header();
     });
     updateTitles();
   }
-
-  console.log(iframeVisible, 'iframeVisible');
   
 
-// section 2 : heading slide
-function updateHeadingSlides() {
-  const headingContainer = document.getElementById("heading-slides-container");
-  headingContainer.innerHTML = ''; 
-  HeadingTitles.forEach((title) => {
-    const titleElement = document.createElement("span");
-    titleElement.textContent = `     ${title.item}     `;
-    titleElement.classList.add("heading-slide");
-    headingContainer.appendChild(titleElement);
-  });
-  const slideHeight = headingContainer.firstElementChild.offsetHeight;
-  headingContainer.style.transform = `translateY(-${scrollableHeadingComponentIndex * slideHeight}px)`;
-}
-function moveToNextSlide() {
-  const headingContainer = document.getElementById("heading-slides-container");
-  const totalSlides = HeadingTitles.length;
-  scrollableHeadingComponentIndex = (scrollableHeadingComponentIndex + 1) % totalSlides; 
-  const slideHeight = headingContainer.firstElementChild.offsetHeight;
-  headingContainer.style.transform = `translateY(-${scrollableHeadingComponentIndex * slideHeight}px)`;
-}
+  // section 2 : heading slide
+  function updateHeadingSlides() {
+    const headingContainer = document.getElementById("heading-slides-container");
+    headingContainer.innerHTML = ''; 
+    HeadingTitles.forEach((title) => {
+      const titleElement = document.createElement("span");
+      titleElement.textContent = `     ${title.item}     `;
+      titleElement.classList.add("heading-slide");
+      headingContainer.appendChild(titleElement);
+    });
+    const slideHeight = headingContainer.firstElementChild.offsetHeight;
+    headingContainer.style.transform = `translateY(-${scrollableHeadingComponentIndex * slideHeight}px)`;
+  }
+  function moveToNextSlide() {
+    const headingContainer = document.getElementById("heading-slides-container");
+    const totalSlides = HeadingTitles.length;
+    scrollableHeadingComponentIndex = (scrollableHeadingComponentIndex + 1) % totalSlides; 
+    const slideHeight = headingContainer.firstElementChild.offsetHeight;
+    headingContainer.style.transform = `translateY(-${scrollableHeadingComponentIndex * slideHeight}px)`;
+  }
 
   // full page scroll
   function handleScroll(event) {
-    console.log(iframeVisible, 'iframeVisible');
-
     if (isThrottled) return;
     const deltaY = event.deltaY;
     const player = document.getElementById('player');
@@ -606,30 +591,14 @@ function moveToNextSlide() {
   function updateTextPosition() {
   const h2Styles = publishingText.style;
   const pStyles = publishingSubText.style;
-
-  console.log(h2Styles, pStyles, 'styleseses');
-  
-
   if (!iframeVisible) {
-    h2Styles.position = 'absolute';
-    h2Styles.left = '50%';
-    h2Styles.top = '50%';
-    h2Styles.transform = 'translate(-50%, -50%)';
-
-    pStyles.position = 'absolute';
-    pStyles.left = '50%';
-    pStyles.top = '50%';
-    pStyles.transform = 'translate(-50%, -50%)';
+    h2Styles.transition = 'transform 0.5s ease, position 0.5s ease';
+    h2Styles.top = '45%';
+    pStyles.top = '52%';
   } else {
-    h2Styles.position = 'absolute';
-    h2Styles.left = '50%';
-    h2Styles.top = '10%';
-    h2Styles.transform = 'translate(-50%, -50%)';
-
-    pStyles.position = 'absolute';
-    pStyles.left = '50%';
-    pStyles.top = '20%';
-    pStyles.transform = 'translate(-50%, -50%)';
+    h2Styles.transition = 'transform 0.5s ease, position 0.5s ease';
+    h2Styles.top = '25%';
+    pStyles.top = '35%';
   }
 }
 
@@ -647,6 +616,3 @@ function moveToNextSlide() {
   }
   initializeSlides();
 </script>
-
-
-
