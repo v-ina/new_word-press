@@ -11,13 +11,13 @@ get_header();
 
 
   <div class="section-navigation">
-    <?php for ($i = 1; $i <= 7; $i++): ?>
+    <?php for ($i = 1; $i <= 6; $i++): ?>
       <div class="nav-dot" data-section-index="<?php echo $i; ?>"></div>
     <?php endfor; ?>
   </div>
 
   <!-- section 1 -->
-  <section class="section home-entry relative" data-section-index="1">
+  <section id='section1' class="home-entry relative" data-section-index="1">
   <div class="flex justify-center items-center w-full h-full">
       <h1 class="font-title text-[82px] text-semibold uppercase mx-auto text-center">plus un music</h1>
     </div>
@@ -168,6 +168,270 @@ get_header();
     </div>
   </section>
 </main>
+
+<script>
+  let sectionIndex = 2;
+  let firstSectionVisible = true; 
+  const section1 = document.getElementById('section1');
+  const threshold = 200;
+
+  // navigation dots
+  document.addEventListener('DOMContentLoaded', function () {
+    const navDots = document.querySelectorAll('.section-navigation .nav-dot');
+    const sections = document.querySelectorAll('.section');
+      function updateNavDots() {
+      const currentSectionIndex = Array.from(sections).findIndex(section =>
+        section.getBoundingClientRect().top >= 0 &&
+        section.getBoundingClientRect().top < window.innerHeight / 2
+      );
+      navDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSectionIndex);
+      });
+      if (currentSectionIndex !== -1) {
+        sectionIndex = currentSectionIndex + 1; 
+      }
+    }
+    function handleDotClick(event) {
+      const index = parseInt(event.target.getAttribute('data-section-index'), 10);
+      if (index >= 1 && index <= sections.length) {
+        sectionIndex = index; 
+        sections[sectionIndex - 1].scrollIntoView({ behavior: 'smooth' }); 
+        updateNavDots(); 
+      }
+    }
+    navDots.forEach(dot => {
+      dot.addEventListener('click', handleDotClick);
+    });
+    window.addEventListener('scroll', updateNavDots);
+    updateNavDots();
+  });
+  
+  let scrollableComponentIndex = 0;
+  let scrollableHeadingComponentIndex = 0;
+  const sections = document.querySelectorAll('.section');
+  const scrollableComponent = document.querySelector('.scrollable-component');
+  const activeContent = scrollableComponent.querySelector('.active-content');
+  const slides = activeContent.querySelectorAll('div');
+  const titlesTop = scrollableComponent.querySelector('.titles-top');
+  const titlesBottom = scrollableComponent.querySelector('.titles-bottom');
+  let isThrottled = false;
+  const throttleDuration = 500;
+  const playerDiv = document.getElementById('player');
+  const section5 = document.querySelector('[data-section-index="5"]');
+  let hasPlayerAppeared = false;
+  let iframeVisible = false;
+  publishingText = document.querySelector('.publishing-title');
+  publishingSubText = document.querySelector('.publishing-sub-title');
+  publishingText.style.transition = 'none';
+  publishingSubText.style.transition = 'none';
+  updateTextPosition();
+
+
+  // section 4 : prev titles & next titles
+  function updateTitles() {
+    titlesTop.innerHTML = '';
+    titlesBottom.innerHTML = '';
+    const titles = serviceDetailData[0].map(item => item.title || `Untitled`);
+    for (let i = 0; i < scrollableComponentIndex; i++) {
+      const title = document.createElement('h2');
+      title.textContent = titles[i];
+      if (Math.abs(scrollableComponentIndex - i) <= 2) {
+        title.style.opacity = '1';
+        title.style.fontSize = '1.8rem'; 
+      } else {
+        title.style.opacity = '0.5'; 
+        title.style.fontSize = '1.2rem'; 
+      }
+      titlesTop.appendChild(title);
+    }
+    for (let i = scrollableComponentIndex + 1; i < titles.length; i++) {
+      const title = document.createElement('h2');
+      title.textContent = titles[i];
+      if (Math.abs(scrollableComponentIndex - i) <= 2) {
+        title.style.opacity = '1';
+        title.style.fontSize = '1.8rem'; 
+      } else {
+        title.style.opacity = '0.5'; 
+        title.style.fontSize = '1.2rem'; 
+      }
+      titlesBottom.appendChild(title);
+    }
+  }
+  function updateSlides() {
+    slides.forEach((slide, index) => {
+      slide.classList.remove('active', 'previous', 'next');
+      if (index === scrollableComponentIndex) {
+        slide.classList.add('active');
+      } else if (index < scrollableComponentIndex) {
+        slide.classList.add('previous');
+      } else {
+        slide.classList.add('next');
+      }
+    });
+    updateTitles();
+  }
+  
+
+  // section 2 : heading slide
+  function updateHeadingSlides() {
+    const headingContainer = document.getElementById("heading-slides-container");
+    headingContainer.innerHTML = ''; 
+    HeadingTitles.forEach((title) => {
+      const titleElement = document.createElement("span");
+      titleElement.textContent = `     ${title.item}     `;
+      titleElement.classList.add("heading-slide");
+      headingContainer.appendChild(titleElement);
+    });
+    requestAnimationFrame(() => {
+      const slideHeight = headingContainer.firstElementChild.offsetHeight;
+      headingContainer.style.transform = `translateY(-${scrollableHeadingComponentIndex * slideHeight}px)`;
+    });
+  }
+  function moveToNextSlide() {
+    const headingContainer = document.getElementById("heading-slides-container");
+    const totalSlides = HeadingTitles.length;
+    scrollableHeadingComponentIndex = (scrollableHeadingComponentIndex + 1) % totalSlides; 
+    requestAnimationFrame(() => {
+      const slideHeight = headingContainer.firstElementChild.offsetHeight;
+      headingContainer.style.transform = `translateY(-${scrollableHeadingComponentIndex * slideHeight}px)`;
+    });
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    initializeHeadingSlides();
+  });
+
+  
+  // full page scroll
+  function handleScroll(event) {
+    if (isThrottled) return;
+    const deltaY = event.deltaY;
+
+    if (sectionIndex === 1  && firstSectionVisible && deltaY > 0 && !isThrottled) {
+      isThrottled = true; 
+      setTimeout(() => isThrottled = false, throttleDuration); 
+      firstSectionVisible = false;
+      section1.style.transition = 'opacity 0.8s ease-in-out'; 
+      section1.style.opacity = '0'; 
+      setTimeout(() => {
+        section1.classList.add('hidden'); 
+      }, 500); 
+      scrollableHeadingComponentIndex = 0; 
+      return; 
+    }
+    if ( sectionIndex === 1  && scrollableHeadingComponentIndex === 0 && !firstSectionVisible && deltaY < 0 && !isThrottled) {
+      isThrottled = true; 
+      setTimeout(() => isThrottled = false, throttleDuration); 
+      firstSectionVisible = true;
+      section1.style.transition = 'none';
+      section1.style.opacity = '0';
+      section1.classList.remove('hidden'); 
+      requestAnimationFrame(() => {
+        section1.style.transition = 'opacity 0.8s ease-in-out'; 
+        section1.style.opacity = '1'; 
+      });
+      return; 
+    }
+
+    const player = document.getElementById('player');
+    const playerContainer = document.getElementById('player-container'); 
+    const publishingText = playerContainer.querySelector('h2'); 
+    const publishingSubText = playerContainer.querySelector('p');  
+
+    if (sectionIndex === 1) {
+      if (deltaY > 0 && scrollableHeadingComponentIndex < HeadingTitles.length - 1) {
+        scrollableHeadingComponentIndex++;
+        updateHeadingSlides();
+      } else if (deltaY < 0 && scrollableHeadingComponentIndex > 0) {
+        scrollableHeadingComponentIndex--;
+        updateHeadingSlides();
+      } else if (deltaY > 0 && scrollableHeadingComponentIndex === HeadingTitles.length - 1) {
+        scrollToSection(sectionIndex + 1); 
+      } else if (deltaY < 0 && scrollableHeadingComponentIndex === 0) {
+        scrollToSection(sectionIndex - 1);  
+      }
+    } else if (sectionIndex === 3) {
+      if (deltaY > 0 && scrollableComponentIndex < slides.length - 1) {
+        scrollableComponentIndex++;
+        updateSlides();
+      } else if (deltaY < 0 && scrollableComponentIndex > 0) {
+        scrollableComponentIndex--;
+        updateSlides();
+      } else if (deltaY > 0 && scrollableComponentIndex === slides.length - 1) {
+        scrollToSection(sectionIndex + 1);
+      } else if (deltaY < 0 && scrollableComponentIndex === 0) {
+        scrollToSection(sectionIndex - 1);
+      }
+    } else if (sectionIndex === 4) {
+  if (deltaY > 0) {
+    if (!iframeVisible) {
+      requestAnimationFrame(() => {
+        player.classList.add('visible');
+        iframeVisible = true;
+        updateTextPosition();
+      });
+    } else {
+      scrollToSection(sectionIndex + 1);
+    }
+  } else if (deltaY < 0) {
+    if (iframeVisible) {
+      requestAnimationFrame(() => {
+        player.classList.remove('visible');
+        iframeVisible = false;
+        updateTextPosition();
+      });
+    } else {
+      scrollToSection(sectionIndex - 1);
+    }
+  }
+} else {
+      if (deltaY > 0) {
+        scrollToSection(sectionIndex + 1);
+      } else {
+        scrollToSection(sectionIndex - 1);
+      }
+    }
+    isThrottled = true;
+    setTimeout(() => {
+      isThrottled = false;
+    }, throttleDuration);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    scrollableHeadingComponentIndex = 0;  
+    updateHeadingSlides();
+  });
+  // section1.classList.remove('hidden');
+
+
+  // section 5 
+  function updateTextPosition() {
+  const h2Styles = publishingText.style;
+  const pStyles = publishingSubText.style;
+  if (!iframeVisible) {
+    h2Styles.transition = 'transform 0.5s ease, position 0.5s ease';
+    h2Styles.top = '45%';
+    pStyles.top = '52%';
+  } else {
+    h2Styles.transition = 'transform 0.5s ease, position 0.5s ease';
+    h2Styles.top = '25%';
+    pStyles.top = '35%';
+  }
+}
+
+  // section scroll function
+  function scrollToSection(index) {
+    if (index < 1 || index > sections.length) return;
+    sections[index - 1].scrollIntoView({ behavior: 'smooth' });
+    sectionIndex = index;
+  }
+
+  // initialisation function
+  function initializeSlides() {
+    updateSlides();
+    window.addEventListener('wheel', handleScroll);
+  }
+  initializeSlides();
+</script>
 
 <style>
   /* globals */
@@ -381,7 +645,6 @@ get_header();
     transform: translate(-50%, -50%);
     transition: top 0.5s ease, transform 0.5s ease;
   }
-
   .publishing-sub-title {
     position: absolute;
     left: 50%;
@@ -390,229 +653,19 @@ get_header();
     transition: top 0.5s ease, transform 0.5s ease;
   }
 
+  /* landing component */
+  #section1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+  }
+  #section1.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
 </style>
-
-
- <script>
-  let sectionIndex = 1;
-
-  // navigation dots
-  document.addEventListener('DOMContentLoaded', function () {
-    const navDots = document.querySelectorAll('.section-navigation .nav-dot');
-    const sections = document.querySelectorAll('.section');
-      function updateNavDots() {
-      const currentSectionIndex = Array.from(sections).findIndex(section =>
-        section.getBoundingClientRect().top >= 0 &&
-        section.getBoundingClientRect().top < window.innerHeight / 2
-      );
-      navDots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSectionIndex);
-      });
-      if (currentSectionIndex !== -1) {
-        sectionIndex = currentSectionIndex + 1; 
-      }
-    }
-    function handleDotClick(event) {
-      const index = parseInt(event.target.getAttribute('data-section-index'), 10);
-      if (index >= 1 && index <= sections.length) {
-        sectionIndex = index; 
-        sections[sectionIndex - 1].scrollIntoView({ behavior: 'smooth' }); 
-        updateNavDots(); 
-      }
-    }
-    navDots.forEach(dot => {
-      dot.addEventListener('click', handleDotClick);
-    });
-    window.addEventListener('scroll', updateNavDots);
-    updateNavDots();
-  });
-  
-  let scrollableComponentIndex = 0;
-  let scrollableHeadingComponentIndex = 0;
-  const sections = document.querySelectorAll('.section');
-  const scrollableComponent = document.querySelector('.scrollable-component');
-  const activeContent = scrollableComponent.querySelector('.active-content');
-  const slides = activeContent.querySelectorAll('div');
-  const titlesTop = scrollableComponent.querySelector('.titles-top');
-  const titlesBottom = scrollableComponent.querySelector('.titles-bottom');
-  let isThrottled = false;
-  const throttleDuration = 500;
-  const playerDiv = document.getElementById('player');
-  const section5 = document.querySelector('[data-section-index="5"]');
-  let hasPlayerAppeared = false;
-  let iframeVisible = false;
-  publishingText = document.querySelector('.publishing-title');
-  publishingSubText = document.querySelector('.publishing-sub-title');
-  publishingText.style.transition = 'none';
-  publishingSubText.style.transition = 'none';
-  updateTextPosition();
-
-
-  // section 4 : prev titles & next titles
-  function updateTitles() {
-    titlesTop.innerHTML = '';
-    titlesBottom.innerHTML = '';
-    const titles = serviceDetailData[0].map(item => item.title || `Untitled`);
-    for (let i = 0; i < scrollableComponentIndex; i++) {
-      const title = document.createElement('h2');
-      title.textContent = titles[i];
-      if (Math.abs(scrollableComponentIndex - i) <= 2) {
-        title.style.opacity = '1';
-        title.style.fontSize = '1.8rem'; 
-      } else {
-        title.style.opacity = '0.5'; 
-        title.style.fontSize = '1.2rem'; 
-      }
-      titlesTop.appendChild(title);
-    }
-    for (let i = scrollableComponentIndex + 1; i < titles.length; i++) {
-      const title = document.createElement('h2');
-      title.textContent = titles[i];
-      if (Math.abs(scrollableComponentIndex - i) <= 2) {
-        title.style.opacity = '1';
-        title.style.fontSize = '1.8rem'; 
-      } else {
-        title.style.opacity = '0.5'; 
-        title.style.fontSize = '1.2rem'; 
-      }
-      titlesBottom.appendChild(title);
-    }
-  }
-
-  function updateSlides() {
-    slides.forEach((slide, index) => {
-      slide.classList.remove('active', 'previous', 'next');
-      if (index === scrollableComponentIndex) {
-        slide.classList.add('active');
-      } else if (index < scrollableComponentIndex) {
-        slide.classList.add('previous');
-      } else {
-        slide.classList.add('next');
-      }
-    });
-    updateTitles();
-  }
-  
-
-  // section 2 : heading slide
-  function updateHeadingSlides() {
-    const headingContainer = document.getElementById("heading-slides-container");
-    headingContainer.innerHTML = ''; 
-    HeadingTitles.forEach((title) => {
-      const titleElement = document.createElement("span");
-      titleElement.textContent = `     ${title.item}     `;
-      titleElement.classList.add("heading-slide");
-      headingContainer.appendChild(titleElement);
-    });
-    const slideHeight = headingContainer.firstElementChild.offsetHeight;
-    headingContainer.style.transform = `translateY(-${scrollableHeadingComponentIndex * slideHeight}px)`;
-  }
-  function moveToNextSlide() {
-    const headingContainer = document.getElementById("heading-slides-container");
-    const totalSlides = HeadingTitles.length;
-    scrollableHeadingComponentIndex = (scrollableHeadingComponentIndex + 1) % totalSlides; 
-    const slideHeight = headingContainer.firstElementChild.offsetHeight;
-    headingContainer.style.transform = `translateY(-${scrollableHeadingComponentIndex * slideHeight}px)`;
-  }
-
-  // full page scroll
-  function handleScroll(event) {
-    if (isThrottled) return;
-    const deltaY = event.deltaY;
-    const player = document.getElementById('player');
-    const playerContainer = document.getElementById('player-container'); 
-    const publishingText = playerContainer.querySelector('h2'); 
-    const publishingSubText = playerContainer.querySelector('p');  
-    if (sectionIndex === 2) {
-      if (deltaY > 0 && scrollableHeadingComponentIndex < HeadingTitles.length - 1) {
-        scrollableHeadingComponentIndex++;
-        updateHeadingSlides();
-      } else if (deltaY < 0 && scrollableHeadingComponentIndex > 0) {
-        scrollableHeadingComponentIndex--;
-        updateHeadingSlides();
-      } else if (deltaY > 0 && scrollableHeadingComponentIndex === HeadingTitles.length - 1) {
-        scrollToSection(sectionIndex + 1); 
-      } else if (deltaY < 0 && scrollableHeadingComponentIndex === 0) {
-        scrollToSection(sectionIndex - 1);  
-      }
-    } else if (sectionIndex === 4) {
-      if (deltaY > 0 && scrollableComponentIndex < slides.length - 1) {
-        scrollableComponentIndex++;
-        updateSlides();
-      } else if (deltaY < 0 && scrollableComponentIndex > 0) {
-        scrollableComponentIndex--;
-        updateSlides();
-      } else if (deltaY > 0 && scrollableComponentIndex === slides.length - 1) {
-        scrollToSection(sectionIndex + 1);
-      } else if (deltaY < 0 && scrollableComponentIndex === 0) {
-        scrollToSection(sectionIndex - 1);
-      }
-    } else if (sectionIndex === 5) {
-  if (deltaY > 0) {
-    if (!iframeVisible) {
-      requestAnimationFrame(() => {
-        player.classList.add('visible');
-        iframeVisible = true;
-        updateTextPosition();
-      });
-    } else {
-      scrollToSection(sectionIndex + 1);
-    }
-  } else if (deltaY < 0) {
-    if (iframeVisible) {
-      requestAnimationFrame(() => {
-        player.classList.remove('visible');
-        iframeVisible = false;
-        updateTextPosition();
-      });
-    } else {
-      scrollToSection(sectionIndex - 1);
-    }
-  }
-} else {
-      if (deltaY > 0) {
-        scrollToSection(sectionIndex + 1);
-      } else {
-        scrollToSection(sectionIndex - 1);
-      }
-    }
-    isThrottled = true;
-    setTimeout(() => {
-      isThrottled = false;
-    }, throttleDuration);
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    scrollableHeadingComponentIndex = 0;  
-    updateHeadingSlides();
-  });
-
-  // section 5 
-  function updateTextPosition() {
-  const h2Styles = publishingText.style;
-  const pStyles = publishingSubText.style;
-  if (!iframeVisible) {
-    h2Styles.transition = 'transform 0.5s ease, position 0.5s ease';
-    h2Styles.top = '45%';
-    pStyles.top = '52%';
-  } else {
-    h2Styles.transition = 'transform 0.5s ease, position 0.5s ease';
-    h2Styles.top = '25%';
-    pStyles.top = '35%';
-  }
-}
-
-  // section scroll function
-  function scrollToSection(index) {
-    if (index < 1 || index > sections.length) return;
-    sections[index - 1].scrollIntoView({ behavior: 'smooth' });
-    sectionIndex = index;
-  }
-
-  // initialisation function
-  function initializeSlides() {
-    updateSlides();
-    window.addEventListener('wheel', handleScroll);
-  }
-  initializeSlides();
-</script>
